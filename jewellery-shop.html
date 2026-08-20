@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Al Memzar Star Jewellery</title>
+<link rel="manifest" href="manifest.json">
+<style>
+  :root{
+    --bg:#12100e;
+    --bg-card:#1b1815;
+    --gold:#c9a24b;
+    --gold-soft:#e6cf94;
+    --cream:#f4ede0;
+    --line:#33302a;
+    --whatsapp:#25d366;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Georgia', 'Times New Roman', serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:90px;
+  }
+  header{
+    padding:28px 20px 20px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  header .eyebrow{
+    font-family:Arial, sans-serif;
+    letter-spacing:3px;
+    font-size:11px;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  header h1{
+    font-size:26px;
+    font-weight:400;
+    letter-spacing:1px;
+    margin-top:6px;
+    color:var(--gold-soft);
+  }
+  header p{
+    font-family:Arial, sans-serif;
+    font-size:12px;
+    color:#9a9488;
+    margin-top:4px;
+  }
+  .tabs{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding:16px 16px 4px;
+    font-family:Arial, sans-serif;
+  }
+  .tab{
+    flex:0 0 auto;
+    padding:8px 16px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:13px;
+    color:#c9c3b6;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  .tab.active{
+    background:var(--gold);
+    color:#1a1712;
+    border-color:var(--gold);
+    font-weight:bold;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    padding:16px;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .card .thumb{
+    aspect-ratio:1/1;
+    background:linear-gradient(135deg,#2a251c,#1b1815);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+  }
+  .card .info{padding:10px 12px 14px;}
+  .card .name{font-size:14px;color:var(--cream);}
+  .card .price{
+    font-family:Arial, sans-serif;
+    font-size:13px;
+    color:var(--gold);
+    margin-top:4px;
+  }
+  .card button{
+    margin-top:8px;
+    width:100%;
+    background:none;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    padding:6px;
+    border-radius:6px;
+    font-family:Arial, sans-serif;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .card button:active{background:var(--gold);color:#1a1712;}
+  .cartbar{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:var(--bg-card);
+    border-top:1px solid var(--gold);
+    padding:12px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:Arial, sans-serif;
+  }
+  .cartbar .count{font-size:13px;color:#c9c3b6;}
+  .cartbar a{
+    background:var(--whatsapp);
+    color:#fff;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Manama · Bahrain</div>
+  <h1>Al Memzar Star Jewellery</h1>
+  <p>Fashion &amp; Silver Jewellery — Order on WhatsApp</p>
+</header>
+
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="grid"></div>
+
+<div class="cartbar">
+  <span class="count" id="count">0 items selected</span>
+  <a id="waLink" href="#" target="_blank">Order on WhatsApp →</a>
+</div>
+
+<script>
+// ---- EDIT THIS SECTION: your shop number + products ----
+const WHATSAPP_NUMBER = "97300000000"; // Bahrain number, no + or spaces
+
+const PRODUCTS = [
+  {id:1, cat:"Payals", name:"Fancy Silver Payal", price:"BHD 6.500", emoji:"🦶"},
+  {id:2, cat:"Payals", name:"Rajkot Design Payal", price:"BHD 7.200", emoji:"🦶"},
+  {id:3, cat:"Chains", name:"925 Silver Chain 20\"", price:"BHD 9.000", emoji:"⛓️"},
+  {id:4, cat:"Chains", name:"925 Silver Chain 24\"", price:"BHD 11.500", emoji:"⛓️"},
+  {id:5, cat:"Rings", name:"Silver Adjustable Ring", price:"BHD 3.200", emoji:"💍"},
+  {id:6, cat:"Bangles", name:"Fashion Bangle Set", price:"BHD 5.800", emoji:"⭕"},
+];
+// ----------------------------------------------------------
+
+const cats = ["All", ...new Set(PRODUCTS.map(p=>p.cat))];
+let active = "All";
+let cart = {};
+
+function renderTabs(){
+  const t = document.getElementById("tabs");
+  t.innerHTML = cats.map(c=>`<div class="tab ${c===active?'active':''}" data-c="${c}">${c}</div>`).join("");
+  t.querySelectorAll(".tab").forEach(el=>el.onclick=()=>{active=el.dataset.c;renderTabs();renderGrid();});
+}
+
+function renderGrid(){
+  const g = document.getElementById("grid");
+  const items = PRODUCTS.filter(p=>active==="All"||p.cat===active);
+  g.innerHTML = items.map(p=>`
+    <div class="card">
+      <div class="thumb">${p.emoji}</div>
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">${p.price}</div>
+        <button data-id="${p.id}">${cart[p.id]?`Added (${cart[p.id]})`:'Add to order'}</button>
+      </div>
+    </div>`).join("");
+  g.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id;
+    cart[id]=(cart[id]||0)+1;
+    renderGrid();
+    updateCart();
+  });
+}
+
+function updateCart(){
+  const totalItems = Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById("count").innerText = `${totalItems} item${totalItems!==1?'s':''} selected`;
+  const lines = Object.entries(cart).map(([id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    return `${qty} x ${p.name} (${p.price})`;
+  });
+  const msg = `Hi Al Memzar Star Jewellery, I'd like to order:%0A${lines.join('%0A')}`;
+  document.getElementById("waLink").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+}
+
+renderTabs();
+renderGrid();
+updateCart();
+</script>
+</body>
+</html>
