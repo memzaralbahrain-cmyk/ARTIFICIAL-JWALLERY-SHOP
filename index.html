@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -333,6 +334,40 @@
     opacity:1;
     transform:translateX(-50%) translateY(0);
   }
+  .cart-fab{
+    position:fixed;
+    top:14px;
+    right:14px;
+    z-index:40;
+    width:48px;
+    height:48px;
+    background:var(--bg-card);
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+    cursor:pointer;
+  }
+  .cart-fab .badge-count{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    background:#c0392b;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    min-width:20px;
+    height:20px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 4px;
+  }
   footer{
     padding:20px 20px 30px;
     border-top:1px solid var(--line);
@@ -359,6 +394,11 @@
 </style>
 </head>
 <body>
+
+<div class="cart-fab" id="cartFab">
+  🛒
+  <span class="badge-count" id="cartFabCount" style="display:none;">0</span>
+</div>
 
 <header>
   <img src="icon-512.png" alt="Al Memzar Star Jewellery Logo" class="logo" onerror="this.style.display='none'">
@@ -514,6 +554,13 @@ function showToast(text){
 function updateCart(){
   const totalItems = Object.values(cart).reduce((a,b)=>a+b,0);
   document.getElementById("count").innerText = `${totalItems} item${totalItems!==1?'s':''} selected — View cart`;
+  const fabCount = document.getElementById("cartFabCount");
+  if(totalItems>0){
+    fabCount.style.display = "flex";
+    fabCount.innerText = totalItems;
+  } else {
+    fabCount.style.display = "none";
+  }
   const lines = Object.entries(cart).map(([id,qty])=>{
     const p = PRODUCTS.find(x=>x.id==id);
     return `${qty} x ${p.name} (${finalPrice(p)})`;
@@ -589,6 +636,7 @@ function closeDrawerFn(){
   document.getElementById("drawer").classList.remove("show");
 }
 document.getElementById("count").onclick = openDrawer;
+document.getElementById("cartFab").onclick = openDrawer;
 document.getElementById("overlay").onclick = closeDrawerFn;
 document.getElementById("closeDrawer").onclick = closeDrawerFn;
 
