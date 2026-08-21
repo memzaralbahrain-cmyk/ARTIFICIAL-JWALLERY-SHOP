@@ -90,6 +90,13 @@
     align-items:center;
     justify-content:center;
     font-size:34px;
+    overflow:hidden;
+  }
+  .card .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
   }
   .card .info{padding:10px 12px 14px;}
   .card .name{font-size:14px;color:var(--cream);}
@@ -98,6 +105,23 @@
     font-size:13px;
     color:var(--gold);
     margin-top:4px;
+  }
+  .card .price .strike{
+    color:#8a8578;
+    text-decoration:line-through;
+    font-size:11px;
+    margin-right:6px;
+  }
+  .card .badge{
+    display:inline-block;
+    background:#c0392b;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    font-size:10px;
+    font-weight:bold;
+    padding:2px 6px;
+    border-radius:4px;
+    margin-bottom:4px;
   }
   .card button{
     margin-top:8px;
@@ -152,22 +176,50 @@
 </div>
 
 <script>
-// ---- EDIT THIS SECTION: your shop number + products ----
-const WHATSAPP_NUMBER = "97334485751"; // Bahrain number, no + or spaces
+// ================================================================
+// EDIT THIS SECTION ONLY — your shop number + products
+// ================================================================
+const WHATSAPP_NUMBER = "97334485751"; // no + sign, no spaces
+
+// To add a photo: upload the image file to GitHub (same folder as
+// this file, e.g. inside an "images" folder), then set "img" below
+// to that exact filename, e.g. "images/payal1.jpg"
+// If you leave "img" empty (""), an emoji placeholder is shown instead.
+//
+// To give a discount: set "discount" to a percentage number (e.g. 20 for 20% off).
+// Leave "discount" as 0 for no discount — normal price will show as usual.
 
 const PRODUCTS = [
-  {id:1, cat:"Payals", name:"Fancy Silver Payal", price:"BHD 6.500", emoji:"🦶"},
-  {id:2, cat:"Payals", name:"Rajkot Design Payal", price:"BHD 7.200", emoji:"🦶"},
-  {id:3, cat:"Chains", name:"925 Silver Chain 20\"", price:"BHD 9.000", emoji:"⛓️"},
-  {id:4, cat:"Chains", name:"925 Silver Chain 24\"", price:"BHD 11.500", emoji:"⛓️"},
-  {id:5, cat:"Rings", name:"Silver Adjustable Ring", price:"BHD 3.200", emoji:"💍"},
-  {id:6, cat:"Bangles", name:"Fashion Bangle Set", price:"BHD 5.800", emoji:"⭕"},
+  {id:1, cat:"Payals", name:"Fancy Silver Payal", price:"BHD 6.500", discount:0, img:"", emoji:"🦶"},
+  {id:2, cat:"Payals", name:"Rajkot Design Payal", price:"BHD 7.200", discount:20, img:"", emoji:"🦶"},
+  {id:3, cat:"Chains", name:"925 Silver Chain 20\"", price:"BHD 9.000", discount:0, img:"", emoji:"⛓️"},
+  {id:4, cat:"Chains", name:"925 Silver Chain 24\"", price:"BHD 11.500", discount:0, img:"", emoji:"⛓️"},
+  {id:5, cat:"Rings", name:"Silver Adjustable Ring", price:"BHD 3.200", discount:0, img:"", emoji:"💍"},
+  {id:6, cat:"Bangles", name:"Fashion Bangle Set", price:"BHD 5.800", discount:0, img:"", emoji:"⭕"},
 ];
-// ----------------------------------------------------------
+// ================================================================
+// END OF EDIT SECTION
+// ================================================================
 
 const cats = ["All", ...new Set(PRODUCTS.map(p=>p.cat))];
 let active = "All";
 let cart = {};
+
+function priceHTML(p){
+  if(!p.discount || p.discount<=0) return p.price;
+  const num = parseFloat(p.price.replace(/[^0-9.]/g,""));
+  const currency = p.price.replace(/[0-9.]/g,"").trim();
+  const discounted = (num - (num*p.discount/100)).toFixed(3);
+  return `<span class="strike">${p.price}</span>${currency} ${discounted}`;
+}
+
+function finalPrice(p){
+  if(!p.discount || p.discount<=0) return p.price;
+  const num = parseFloat(p.price.replace(/[^0-9.]/g,""));
+  const currency = p.price.replace(/[0-9.]/g,"").trim();
+  const discounted = (num - (num*p.discount/100)).toFixed(3);
+  return `${currency} ${discounted}`;
+}
 
 function renderTabs(){
   const t = document.getElementById("tabs");
@@ -180,10 +232,11 @@ function renderGrid(){
   const items = PRODUCTS.filter(p=>active==="All"||p.cat===active);
   g.innerHTML = items.map(p=>`
     <div class="card">
-      <div class="thumb">${p.emoji}</div>
+      <div class="thumb">${p.img ? `<img src="${p.img}" alt="${p.name}" onerror="this.parentElement.innerHTML='${p.emoji}'">` : p.emoji}</div>
       <div class="info">
+        ${p.discount>0 ? `<span class="badge">${p.discount}% OFF</span><br>` : ''}
         <div class="name">${p.name}</div>
-        <div class="price">${p.price}</div>
+        <div class="price">${priceHTML(p)}</div>
         <button data-id="${p.id}">${cart[p.id]?`Added (${cart[p.id]})`:'Add to order'}</button>
       </div>
     </div>`).join("");
@@ -200,7 +253,7 @@ function updateCart(){
   document.getElementById("count").innerText = `${totalItems} item${totalItems!==1?'s':''} selected`;
   const lines = Object.entries(cart).map(([id,qty])=>{
     const p = PRODUCTS.find(x=>x.id==id);
-    return `${qty} x ${p.name} (${p.price})`;
+    return `${qty} x ${p.name} (${finalPrice(p)})`;
   });
   const msg = `Hi Al Memzar Star Jewellery, I'd like to order:%0A${lines.join('%0A')}`;
   document.getElementById("waLink").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
