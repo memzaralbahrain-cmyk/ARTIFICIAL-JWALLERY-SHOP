@@ -56,6 +56,13 @@
     color:#8a7570;
     margin-top:4px;
   }
+  header p.tagline{
+    font-family:'Georgia',serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--gold-soft);
+    margin-top:8px;
+  }
   .tabs{
     display:flex;
     overflow-x:auto;
@@ -410,6 +417,7 @@
   <div class="eyebrow">Manama · Bahrain</div>
   <h1>Al Memzar Star Jewellery</h1>
   <p>Fashion &amp; Silver Jewellery — Order on WhatsApp</p>
+  <p class="tagline">✨ We Believe in Quality — We Make You Shine ✨</p>
 </header>
 
 <div class="promo">
@@ -477,7 +485,7 @@ const PRODUCTS = [
   {id:9, cat:"Necklace", name:"Lulu Set 2", price:"BHD 11.000", discount:0, img:"IMG-20260712-WA0060.jpg", emoji:"📿"},
   {id:10, cat:"Necklace", name:"Lulu Set 3", price:"BHD 9.900", discount:0, img:"IMG-20260712-WA0061.jpg", emoji:"📿"},
   {id:11, cat:"Bracelet", name:"Silver Bracelet", price:"BHD 5.000", discount:0, img:"", desc:"", emoji:"💫"},
-  {id:12, cat:"Necklace", name:"588 Zarkon Set", price:"BHD 15.000", discount:0, img:"588zarkonset.jpg", desc:"Good quality", emoji:"📿"},
+  {id:12, cat:"Necklace", name:"588 Zarkon Set", price:"BHD 15.000", discount:0, img:"588zarkonset.jpg", desc:"Elegant sparkle, premium finish", emoji:"📿"},
 ];
 // ================================================================
 // END OF EDIT SECTION
@@ -653,6 +661,10 @@ document.getElementById("closeDrawer").onclick = closeDrawerFn;
 
 renderTabs();
 renderGrid();
+updateCart();
+</script>
+</body>
+</html>
 updateCart();
 </script>
 </body>
