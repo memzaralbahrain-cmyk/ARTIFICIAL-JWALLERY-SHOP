@@ -108,6 +108,12 @@
   }
   .card .info{padding:10px 12px 14px;}
   .card .name{font-size:14px;color:var(--cream);}
+  .card .desc{
+    font-family:Arial, sans-serif;
+    font-size:11px;
+    color:#7a6a66;
+    margin-top:2px;
+  }
   .card .price{
     font-family:Arial, sans-serif;
     font-size:13px;
@@ -470,7 +476,8 @@ const PRODUCTS = [
   {id:8, cat:"Necklace", name:"Lulu Set 1", price:"BHD 10.000", discount:0, img:"IMG-20260703-WA0029.jpg", emoji:"📿"},
   {id:9, cat:"Necklace", name:"Lulu Set 2", price:"BHD 11.000", discount:0, img:"IMG-20260712-WA0060.jpg", emoji:"📿"},
   {id:10, cat:"Necklace", name:"Lulu Set 3", price:"BHD 9.900", discount:0, img:"IMG-20260712-WA0061.jpg", emoji:"📿"},
-  {id:11, cat:"Bracelet", name:"Silver Bracelet", price:"BHD 5.000", discount:0, img:"", emoji:"💫"},
+  {id:11, cat:"Bracelet", name:"Silver Bracelet", price:"BHD 5.000", discount:0, img:"", desc:"", emoji:"💫"},
+  {id:12, cat:"Necklace", name:"588 Zarkon Set", price:"BHD 15.000", discount:0, img:"588zarkonset.jpg", desc:"Good quality", emoji:"📿"},
 ];
 // ================================================================
 // END OF EDIT SECTION
@@ -511,6 +518,7 @@ function renderGrid(){
       <div class="info">
         ${p.discount>0 ? `<span class="badge">${p.discount}% OFF</span><br>` : ''}
         <div class="name">${p.name}</div>
+        ${p.desc ? `<div class="desc">${p.desc}</div>` : ''}
         <div class="price">${priceHTML(p)}</div>
         ${cart[p.id] ?
           `<div class="qtybox">
