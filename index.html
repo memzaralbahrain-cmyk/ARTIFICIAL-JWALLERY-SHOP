@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,32 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Al Memzar Star Jewellery</title>
 <link rel="manifest" href="manifest.json">
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCCI7lnP0oZdOy53QzLpMD0g6wBMvQRjg",
-  authDomain: "memzarmart.firebaseapp.com",
-  projectId: "memzarmart",
-  storageBucket: "memzarmart.firebasestorage.app",
-  messagingSenderId: "188618799436",
-  appId: "1:188618799436:web:5273360952c3281a9ab7e9",
-  measurementId: "G-BFQ1EQSLCJ"
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-// Make Firestore available to the rest of the page (the main script below
-// is a normal script, not a module, so we attach these to window)
-window.db = getFirestore(app);
-window.firestoreCollection = collection;
-window.firestoreGetDocs = getDocs;
-window.dispatchEvent(new Event('firebaseReady'));
-</script>
 <style>
   :root{
     --bg:#fdf3f0;
@@ -522,14 +495,6 @@ window.dispatchEvent(new Event('firebaseReady'));
     line-height:1.7;
   }
   footer .biz-info .name{color:var(--gold-soft);font-size:12.5px;}
-  .loading-msg{
-    text-align:center;
-    padding:30px;
-    font-family:Arial, sans-serif;
-    color:#8a7570;
-    font-size:13px;
-    grid-column:1/-1;
-  }
 </style>
 </head>
 <body>
@@ -559,7 +524,7 @@ window.dispatchEvent(new Event('firebaseReady'));
 </div>
 
 <div class="tabs" id="tabs"></div>
-<div class="grid" id="grid"><div class="loading-msg">Loading products…</div></div>
+<div class="grid" id="grid"></div>
 
 <footer>
   <div class="policy" id="policyText">
@@ -607,58 +572,44 @@ window.dispatchEvent(new Event('firebaseReady'));
 
 <script>
 // ================================================================
-// WhatsApp number — edit if needed
+// EDIT THIS SECTION ONLY — your shop number + products
 // ================================================================
 const WHATSAPP_NUMBER = "97334485751"; // no + sign, no spaces
 
-// Products now load from Firestore (see loadProductsFromFirestore below)
-// instead of being hardcoded here. Add / edit products from the
-// Firebase Console → Firestore Database → "products" collection.
+// To add a photo: upload the image file to GitHub (same folder as
+// this file, e.g. inside an "images" folder), then set "img" below
+// to that exact filename, e.g. "images/payal1.jpg"
+// If you leave "img" empty (""), an emoji placeholder is shown instead.
 //
-// Expected fields per Firestore document (all optional except name/price):
-//   name (string)          -> product name (English)
-//   nameAr (string)        -> product name (Arabic) - optional
-//   price (number)         -> e.g. 5.5  (shown as "BHD 5.500")
-//   category (string)      -> e.g. "Necklace" (used for the filter tabs)
-//   discount (number)      -> e.g. 20  (percent off, optional)
-//   image (string)         -> filename or full URL of product photo
-//   emoji (string)         -> fallback emoji if no image, e.g. "📿"
-//   desc / descAr (string) -> short description - optional
-//   reviews (array)        -> [{name, rating, text}, ...] - optional
+// To give a discount: set "discount" to a percentage number (e.g. 20 for 20% off).
+// Leave "discount" as 0 for no discount — normal price will show as usual.
+//
+// To add reviews: add a "reviews" array to a product, e.g.
+// reviews: [ {name:"Fatima", rating:5, text:"Beautiful quality!"}, {name:"Aisha", rating:4, text:"Loved it"} ]
+// Customers can tap "Write a review" on a product — it opens WhatsApp with their
+// message pre-filled. Once they send it to you, add it here in this same format.
+// A product with no "reviews" field (or an empty array) just shows "No reviews yet".
 
-let PRODUCTS = [];
-let cats = ["All"];
-let active = "All";
-let cart = {};
-
-async function loadProductsFromFirestore(){
-  try{
-    const snapshot = await window.firestoreGetDocs(window.firestoreCollection(window.db, "products"));
-    const loaded = [];
-    let idx = 1;
-    snapshot.forEach(docSnap=>{
-      const d = docSnap.data();
-      loaded.push({
-        id: idx++,
-        cat: d.category || "Others",
-        nameAr: d.nameAr || "",
-        name: d.name || "Unnamed product",
-        price: (d.price !== undefined) ? `BHD ${Number(d.price).toFixed(3)}` : "BHD 0.000",
-        discount: d.discount || 0,
-        img: d.image || "",
-        desc: d.desc || "",
-        descAr: d.descAr || "",
-        emoji: d.emoji || "💎",
-        reviews: d.reviews || []
-      });
-    });
-    PRODUCTS = loaded;
-  }catch(e){
-    console.error("Could not load products from Firestore:", e);
-    document.getElementById("grid").innerHTML = '<div class="loading-msg">Could not load products. Please check your connection.</div>';
-  }
-}
-
+const PRODUCTS = [
+  {id:1, cat:"Payals", nameAr:"خلخال فضي فاخر", name:"Fancy Silver Payal", price:"BHD 6.500", discount:0, img:"", emoji:"🦶"},
+  {id:2, cat:"Payals", nameAr:"خلخال راجكوت", name:"Rajkot Design Payal", price:"BHD 7.200", discount:20, img:"", emoji:"🦶"},
+  {id:3, cat:"Chains", nameAr:"سلسلة فضية 925 - 20 بوصة", name:"925 Silver Chain 20\"", price:"BHD 9.000", discount:0, img:"", emoji:"⛓️"},
+  {id:4, cat:"Chains", nameAr:"سلسلة فضية 925 - 24 بوصة", name:"925 Silver Chain 24\"", price:"BHD 11.500", discount:0, img:"", emoji:"⛓️"},
+  {id:5, cat:"Rings", nameAr:"خاتم فضي قابل للتعديل", name:"Silver Adjustable Ring", price:"BHD 3.200", discount:0, img:"", emoji:"💍"},
+  {id:6, cat:"Bangles", nameAr:"طقم أساور أنيق", name:"Fashion Bangle Set", price:"BHD 5.800", discount:0, img:"", emoji:"⭕"},
+  {id:7, cat:"Necklace", nameAr:"طقم لؤلؤ", name:"Pearl Set", price:"BHD 10.000", discount:0, img:"PearlsetHindi.jpg", emoji:"📿"},
+  {id:8, cat:"Necklace", nameAr:"طقم لولو 1", name:"Lulu Set 1", price:"BHD 10.000", discount:0, img:"IMG-20260703-WA0029.jpg", emoji:"📿"},
+  {id:9, cat:"Necklace", nameAr:"طقم لولو 2", name:"Lulu Set 2", price:"BHD 11.000", discount:0, img:"IMG-20260712-WA0060.jpg", emoji:"📿"},
+  {id:10, cat:"Necklace", nameAr:"طقم لولو 3", name:"Lulu Set 3", price:"BHD 9.900", discount:0, img:"IMG-20260712-WA0061.jpg", emoji:"📿"},
+  {id:11, cat:"Bracelet", nameAr:"إسورة فضية", name:"Silver Bracelet", price:"BHD 5.000", discount:0, img:"", desc:"", descAr:"", emoji:"💫"},
+  {id:12, cat:"Necklace", nameAr:"طقم زركون 588", name:"588 Zarkon Set", price:"BHD 15.000", discount:0, img:"588zarkonset.jpg", desc:"Elegant sparkle, premium finish", descAr:"لمعان أنيق، تشطيب فاخر", emoji:"📿", reviews:[{name:"Fatima",rating:5,text:"Beautiful quality, exactly like the photo!"}]},
+  {id:13, cat:"Bracelet", nameAr:"إسورة زركون 1", name:"Zarkon Bangle 1", price:"BHD 7.000", discount:0, img:"514ZarkonBangel2.jpg", emoji:"💫"},
+  {id:14, cat:"Bracelet", nameAr:"إسورة زركون 2", name:"Zarkon Bangle 2", price:"BHD 7.000", discount:0, img:"514ZarkonBangel3.jpg", emoji:"💫"},
+  {id:15, cat:"Bracelet", nameAr:"إسورة زركون 3", name:"Zarkon Bangle 3", price:"BHD 7.000", discount:0, img:"514ZarkonBangel4.jpg", emoji:"💫"},
+  {id:16, cat:"Anklets", nameAr:"خلخال A001", name:"Anklet A001", price:"BHD 7.000", discount:0, img:"A001Anklet.jpg", emoji:"🦶"},
+  {id:17, cat:"Anklets", nameAr:"خلخال A002", name:"Anklet A002", price:"BHD 4.000", discount:0, img:"A002Anklet.jpg", emoji:"🦶"},
+  {id:18, cat:"Anklets", nameAr:"خلخال 1102", name:"Anklet 1102", price:"BHD 2.000", discount:0, img:"1102Anklet.jpg", emoji:"🦶"},
+];
 // Arabic names for categories (used only for the tab labels, not for matching/filtering)
 const catNamesAr = {
   "Payals": "خلاخيل",
@@ -667,9 +618,15 @@ const catNamesAr = {
   "Bangles": "أساور",
   "Necklace": "قلادات",
   "Bracelet": "إسورة",
-  "Anklets": "خلخال",
-  "Others": "أخرى"
+  "Anklets": "خلخال"
 };
+// ================================================================
+// END OF EDIT SECTION
+// ================================================================
+
+const cats = ["All", ...new Set(PRODUCTS.map(p=>p.cat))];
+let active = "All";
+let cart = {};
 
 // ---- English / Arabic UI toggle ----
 const translations = {
@@ -730,6 +687,7 @@ const translations = {
 };
 let currentLang = "en";
 
+// Converts a display string's digits to Arabic-Indic numerals and "BHD" to "د.ب" when Arabic is active
 function localizeDisplay(str){
   if(currentLang !== "ar") return str;
   const arDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
@@ -774,7 +732,7 @@ function finalPrice(p){
 }
 
 // ---- Currency: fetch live rates once, let visitor pick their own currency ----
-let userCurrency = null;
+let userCurrency = null; // null = show BHD only (no conversion)
 let allRates = null;
 const CURRENCY_OPTIONS = ["USD","SAR","AED","INR","GBP","EUR","KWD","QAR","OMR","EGP","PKR"];
 
@@ -783,7 +741,7 @@ async function initCurrency(){
     const rateRes = await fetch('https://open.er-api.com/v6/latest/BHD');
     const rateData = await rateRes.json();
     if(rateData && rateData.rates) allRates = rateData.rates;
-  }catch(e){}
+  }catch(e){ /* rates unavailable — currency picker just won't convert */ }
 
   try{
     const saved = localStorage.getItem('preferredCurrency');
@@ -796,7 +754,7 @@ async function initCurrency(){
         userCurrency = geo.currency;
       }
     }
-  }catch(e){}
+  }catch(e){ /* default stays BHD-only */ }
 
   buildCurrencyMenu();
   updateCurrencyLabel();
@@ -889,10 +847,6 @@ document.getElementById("closeReviewDrawer").onclick = ()=>{
 
 function renderGrid(){
   const g = document.getElementById("grid");
-  if(PRODUCTS.length===0){
-    g.innerHTML = '<div class="loading-msg">No products yet. Add some in the Firebase Console.</div>';
-    return;
-  }
   const items = PRODUCTS.filter(p=>active==="All"||p.cat===active);
   g.innerHTML = items.map(p=>{
     const displayName = (currentLang==="ar" && p.nameAr) ? p.nameAr : p.name;
@@ -932,13 +886,12 @@ function renderGrid(){
   });
 }
 
-const FREE_DELIVERY_THRESHOLD = 10;
+const FREE_DELIVERY_THRESHOLD = 10; // BHD — edit this number to change the free delivery minimum
 let wasUnlocked = false;
 
 function getCartTotal(){
   return Object.entries(cart).reduce((sum,[id,qty])=>{
     const p = PRODUCTS.find(x=>x.id==id);
-    if(!p) return sum;
     const num = parseFloat(finalPrice(p).replace(/[^0-9.]/g,""));
     return sum + (num*qty);
   }, 0);
@@ -966,8 +919,8 @@ function updateCart(){
   }
   const lines = Object.entries(cart).map(([id,qty])=>{
     const p = PRODUCTS.find(x=>x.id==id);
-    return p ? `${qty} x ${p.name} (${finalPrice(p)})` : '';
-  }).filter(Boolean);
+    return `${qty} x ${p.name} (${finalPrice(p)})`;
+  });
   const cartTotal = getCartTotal();
   const msgLines = lines.slice();
   msgLines.push(`Total: BHD ${cartTotal.toFixed(3)}`);
@@ -1000,7 +953,6 @@ function renderDrawer(){
   } else {
     wrap.innerHTML = entries.map(([id,qty])=>{
       const p = PRODUCTS.find(x=>x.id==id);
-      if(!p) return '';
       const t = translations[currentLang];
       const displayName = (currentLang==="ar" && p.nameAr) ? p.nameAr : p.name;
       return `
@@ -1053,23 +1005,10 @@ document.addEventListener("click", ()=>{
   document.getElementById("currencyMenu").classList.remove("show");
 });
 
-// ---- App startup: wait for products to load from Firestore, then render ----
-async function init(){
-  await loadProductsFromFirestore();
-  cats = ["All", ...new Set(PRODUCTS.map(p=>p.cat))];
-  renderTabs();
-  renderGrid();
-  updateCart();
-  initCurrency();
-}
-
-// Firebase (in the <head> module script) may still be loading when this
-// script runs, so wait for it to signal readiness before starting.
-if(window.db){
-  init();
-} else {
-  window.addEventListener('firebaseReady', init);
-}
+renderTabs();
+renderGrid();
+updateCart();
+initCurrency();
 </script>
 </body>
 </html>
