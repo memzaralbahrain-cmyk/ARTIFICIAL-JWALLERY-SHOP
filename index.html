@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -576,6 +577,21 @@
 // ================================================================
 const WHATSAPP_NUMBER = "97334485751"; // no + sign, no spaces
 
+// Detects if this page is running inside the wrapped Android app (TWA),
+// where whatsapp:// / wa.me links can fail with "ERR_UNKNOWN_URL_SCHEME".
+// In that case we use an intent:// link instead, which Android's WebView
+// can hand off to the WhatsApp app properly. In a normal browser (or on
+// desktop/iOS) we keep using the standard wa.me link.
+function isInTwaApp(){
+  return document.referrer.startsWith('android-app://');
+}
+function buildWhatsAppLink(encodedMsg){
+  if(isInTwaApp()){
+    return `intent://send?phone=${WHATSAPP_NUMBER}&text=${encodedMsg}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+  }
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
+}
+
 // To add a photo: upload the image file to GitHub (same folder as
 // this file, e.g. inside an "images" folder), then set "img" below
 // to that exact filename, e.g. "images/payal1.jpg"
@@ -831,7 +847,7 @@ function openReviews(id){
       </div>`).join("");
   }
   const msg = `Hi Al Memzar Star Jewellery, I'd like to leave a review for ${p.name}.%0AMy rating (1-5 stars): %0AMy review: `;
-  document.getElementById("writeReviewBtn").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  document.getElementById("writeReviewBtn").href = buildWhatsAppLink(msg);
   document.getElementById("writeReviewText").innerText = t.writeReview;
   document.getElementById("reviewOverlay").classList.add("show");
   document.getElementById("reviewDrawer").classList.add("show");
@@ -925,7 +941,7 @@ function updateCart(){
   const msgLines = lines.slice();
   msgLines.push(`Total: BHD ${cartTotal.toFixed(3)}`);
   const msg = `Hi Al Memzar Star Jewellery, I'd like to order:%0A${msgLines.join('%0A')}`;
-  document.getElementById("waLink").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  document.getElementById("waLink").href = buildWhatsAppLink(msg);
 
   const deliveryEl = document.getElementById("deliveryMsg");
   const isUnlocked = cartTotal >= FREE_DELIVERY_THRESHOLD && totalItems>0;
