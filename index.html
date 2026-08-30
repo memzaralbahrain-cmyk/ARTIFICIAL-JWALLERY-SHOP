@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -577,17 +576,18 @@
 // ================================================================
 const WHATSAPP_NUMBER = "97334485751"; // no + sign, no spaces
 
-// Detects if this page is running inside the wrapped Android app (TWA),
-// where whatsapp:// / wa.me links can fail with "ERR_UNKNOWN_URL_SCHEME".
-// In that case we use an intent:// link instead, which Android's WebView
-// can hand off to the WhatsApp app properly. In a normal browser (or on
-// desktop/iOS) we keep using the standard wa.me link.
-function isInTwaApp(){
-  return document.referrer.startsWith('android-app://');
+// Detects Android (whether inside the wrapped app, Chrome, or any other
+// Android browser). On Android we use an intent:// link, which reliably
+// hands off to the WhatsApp app even inside the wrapped Play Store app —
+// plain wa.me / whatsapp:// links can fail there with "ERR_UNKNOWN_URL_SCHEME".
+// On non-Android devices (iPhone, desktop) we keep the standard wa.me link.
+function isAndroid(){
+  return /Android/i.test(navigator.userAgent);
 }
 function buildWhatsAppLink(encodedMsg){
-  if(isInTwaApp()){
-    return `intent://send?phone=${WHATSAPP_NUMBER}&text=${encodedMsg}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+  if(isAndroid()){
+    const fallback = encodeURIComponent(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`);
+    return `intent://send?phone=${WHATSAPP_NUMBER}&text=${encodedMsg}#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=${fallback};end`;
   }
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
 }
