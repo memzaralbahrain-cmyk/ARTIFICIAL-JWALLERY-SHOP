@@ -933,9 +933,17 @@ function updateCart(){
   } else {
     fabCount.style.display = "none";
   }
+  // Build the WhatsApp order message. Each line includes the item name,
+  // price, and — if the product has a photo — a direct link to that photo
+  // so the store staff can see exactly which item was ordered.
   const lines = Object.entries(cart).map(([id,qty])=>{
     const p = PRODUCTS.find(x=>x.id==id);
-    return `${qty} x ${p.name} (${finalPrice(p)})`;
+    let line = `${qty} x ${p.name} (${finalPrice(p)})`;
+    if(p.img){
+      const imgUrl = new URL(p.img, location.href).href;
+      line += `%0APhoto: ${imgUrl}`;
+    }
+    return line;
   });
   const cartTotal = getCartTotal();
   const msgLines = lines.slice();
