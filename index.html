@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Al Memzar Star Jewellery</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#fdf3f0;--card:#fff;--gold:#b76e79;--gold2:#9c4a56;--cream:#3d2b2e;--line:#f0d9d3;--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream);font-family:Georgia,serif;padding-bottom:92px}
+header{text-align:center;padding:28px 20px 20px;border-bottom:1px solid var(--line)}
+.logo{width:72px;height:72px;border-radius:16px;object-fit:cover;margin-bottom:10px;box-shadow:0 4px 14px #0006}
+.eyebrow{font:11px Arial;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+h1{font-size:26px;font-weight:400;letter-spacing:1px;margin-top:6px;color:var(--gold2)}
+header p{font:12px Arial;color:#8a7570;margin-top:4px}.tagline{font:italic 13px Georgia;color:var(--gold2);margin-top:8px}
+.tabs{display:flex;overflow-x:auto;gap:10px;padding:16px}.tab{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font:13px Arial;color:#6b5a56;white-space:nowrap}.tab.active{background:var(--gold);color:#1a1712;font-weight:bold}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.thumb{aspect-ratio:1;background:linear-gradient(135deg,#f8e4de,#fdf3f0);display:flex;align-items:center;justify-content:center;font-size:34px;overflow:hidden;cursor:zoom-in;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}.missing{font:12px Arial;color:#8a7570}
+.photo-count{position:absolute;right:7px;bottom:7px;background:#0009;color:#fff;padding:4px 7px;border-radius:12px;font:11px Arial}
+.info{padding:10px 12px 14px}.name{font-size:14px}.desc{font:11px Arial;color:#7a6a66;margin-top:2px}.price{font:13px Arial;color:var(--gold);margin-top:4px}
+.strike{color:#7a6a66;text-decoration:line-through;font-size:11px;margin-right:6px}.fx,.review-line{font:11px Arial;color:#8a7570;margin-top:3px}.review-line{cursor:pointer}.stars{color:#d4a017;letter-spacing:1px}
+.badge{display:inline-block;background:#c0392b;color:#fff;font:10px Arial;font-weight:bold;padding:2px 6px;border-radius:4px;margin-bottom:4px}.card button{margin-top:8px;width:100%;background:none;border:1px solid var(--gold);color:var(--gold2);padding:6px;border-radius:6px;font:12px Arial}
+.qtybox{margin-top:8px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--gold);border-radius:6px;overflow:hidden}.qtybox button{margin:0;border:0;width:34px;padding:6px 0;background:var(--gold);color:#1a1712;font-size:16px;font-weight:bold}.qtynum{font:13px Arial;color:var(--gold2)}
+.promo{background:linear-gradient(90deg,#f6e2dd,#fbeae5);border-block:1px solid var(--line);padding:8px;text-align:center;font:11.5px Arial;color:var(--gold2)}.promo span{margin:0 8px}
+.cartbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--gold);padding:10px 16px;font-family:Arial;z-index:30}.toprow{display:flex;justify-content:space-between;align-items:center;gap:10px}.count{font-size:13px;color:#6b5a56;text-decoration:underline}.cartbar a{background:var(--wa);color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:bold;white-space:nowrap}.delivery-msg{font-size:11px;color:#8a7570;margin-top:4px}.unlocked{color:#4c9f52}
+footer{padding:20px;border-top:1px solid var(--line);font:11.5px Arial;text-align:center;color:#7a6a66}.policy{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:16px;line-height:1.6}.policy strong,.biz-info .name{color:var(--gold2)}.biz-info{line-height:1.7}
+.fab{position:fixed;z-index:40;background:var(--card);border:1px solid var(--gold);box-shadow:0 3px 10px #0002}.cart-fab{top:14px;right:14px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}.badge-count{position:absolute;top:-4px;right:-4px;background:#c0392b;color:#fff;font:11px Arial;font-weight:bold;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center}.lang-fab{top:14px;left:14px;height:34px;padding:0 12px;border-radius:17px;font:bold 12px Arial;color:var(--gold2);display:flex;align-items:center;justify-content:center}
+.curr-wrap{position:fixed;top:56px;left:14px;z-index:40}.currency-fab{position:static}.curr-menu{display:none;position:absolute;top:40px;left:0;background:var(--card);border:1px solid var(--gold);border-radius:10px;max-height:240px;overflow:auto;min-width:70px}.curr-menu.show{display:block}.curr-opt{padding:9px 14px;font:12.5px Arial;border-bottom:1px solid var(--line)}
+.overlay{display:none;position:fixed;inset:0;background:#0009;z-index:50}.overlay.show{display:block}.drawer{position:fixed;left:0;right:0;bottom:0;max-height:70vh;background:var(--card);border-top:1px solid var(--gold);border-radius:16px 16px 0 0;z-index:51;display:flex;flex-direction:column;transform:translateY(100%);transition:.25s}.drawer.show{transform:translateY(0)}
+.drawer-head{padding:14px 16px 10px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);font-family:Arial}.drawer-head h3{color:var(--gold2);font:18px Georgia}.close{font-size:22px}.drawer-items{overflow:auto;padding:10px 16px;flex:1}.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-family:Arial}.rname{font-size:13px}.rprice{font-size:12px;color:var(--gold)}.rctrl{display:flex;align-items:center;gap:8px}.rctrl button{width:26px;height:26px;border:1px solid var(--gold);background:none;color:var(--gold2);border-radius:6px}.remove{color:#c0392b;font-size:11px;text-decoration:underline;margin-left:8px}.empty{text-align:center;color:#8a7570;font:13px Arial;padding:30px}.drawer-footer{padding:12px 16px 16px;border-top:1px solid var(--line);font-family:Arial}.grand-total{display:flex;justify-content:space-between;font-size:15px;color:var(--gold2);font-weight:bold}
+.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);background:#1f3d20;border:1px solid #6fbf73;color:#c8f0ca;font:12.5px Arial;padding:10px 18px;border-radius:999px;z-index:80;opacity:0;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
+#viewer{display:none;position:fixed;inset:0;background:#000;z-index:100;touch-action:none;overflow:hidden;overscroll-behavior:none;position:fixed;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}#viewer.show{display:block}#viewerImg{position:absolute;left:50%;top:50%;max-width:92vw;max-height:82vh;transform:translate(-50%,-50%) scale(1);user-select:none;-webkit-user-drag:none;touch-action:none}#viewerClose{position:absolute;right:14px;top:14px;width:44px;height:44px;border:1px solid #fff8;border-radius:50%;background:#0008;color:#fff;font-size:24px;z-index:3}
+.viewer-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:58px;border:1px solid #fff8;border-radius:10px;background:#0008;color:#fff;font-size:30px;z-index:3}.viewer-prev{left:10px}.viewer-next{right:10px}
+#viewerCounter{position:absolute;top:18px;left:50%;transform:translateX(-50%);color:#fff;background:#0008;padding:7px 12px;border-radius:20px;font:bold 12px Arial;z-index:3}.viewer-actions{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}.viewer-actions button{border:0;border-radius:10px;padding:11px 14px;font:bold 13px Arial;white-space:nowrap;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;cursor:pointer;position:relative;z-index:20}.viewer-actions{pointer-events:auto}.viewer-actions #viewerAdd{background:#fff;color:#222}.viewer-actions #viewerOrder{background:#25d366;color:#fff}.viewer-help{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;background:#0008;padding:7px 12px;border-radius:20px;font:12px Arial;white-space:nowrap;z-index:3}
+body[dir=rtl] .lang-fab{left:auto;right:14px}body[dir=rtl] .cart-fab{right:auto;left:14px}body[dir=rtl] .curr-wrap{left:auto;right:14px}
+</style>
+</head>
+<body>
+<div class="fab cart-fab" id="cartFab">🛒<span class="badge-count" id="cartFabCount" style="display:none">0</span></div>
+<div class="fab lang-fab" id="langFab">عربي</div>
+<div class="curr-wrap"><div class="fab lang-fab currency-fab" id="currencyFab">BHD ▾</div><div class="curr-menu" id="currencyMenu"></div></div>
+
+<header><img src="icon-512.png" class="logo" alt="Al Memzar Star Jewellery" onerror="this.style.display='none'"><div class="eyebrow">Manama · Bahrain</div><h1>Al Memzar Star Jewellery</h1><p id="subtitleText">Fashion &amp; Silver Jewellery — Order on WhatsApp</p><p class="tagline" id="taglineText">✨ We Believe in Quality — We Make You Shine ✨</p></header>
+<div class="promo" id="promoText">🚚 Free delivery above BHD 10 <span>|</span> 💵 Cash on Delivery available</div>
+<div class="tabs" id="tabs"></div><div class="grid" id="grid"></div>
+<footer><div class="policy" id="policyText"><strong>↩ Returns &amp; Exchange:</strong> Items can be returned or exchanged within <strong>3 days</strong> of delivery. Product must be unused and in original condition.</div><div class="biz-info"><div class="name">Al Memzar Star Jewellery W.L.L</div>329, Block 302, Building 447, Manama, Kingdom of Bahrain<br>CR / License No: 137064-1</div></footer>
+<div class="cartbar"><div class="toprow"><span class="count" id="count">0 items selected — View cart</span><a id="waLink" href="#"><span id="waLinkText">Order on WhatsApp →</span></a></div><div class="delivery-msg" id="deliveryMsg"></div></div>
+
+<div class="overlay" id="overlay"></div><div class="drawer" id="drawer"><div class="drawer-head"><h3 id="drawerTitle">Your Order</h3><span class="close" id="closeDrawer">✕</span></div><div class="drawer-items" id="drawerItems"></div><div class="drawer-footer"><div class="grand-total"><span id="totalLabel">Total</span><span id="grandTotal">BHD 0.000</span></div></div></div>
+<div class="toast" id="toast"></div>
+
+<div id="viewer">
+<button id="viewerClose" type="button">✕</button><button class="viewer-nav viewer-prev" id="viewerPrev" type="button">‹</button><button class="viewer-nav viewer-next" id="viewerNext" type="button">›</button>
+<div id="viewerCounter">1 / 1</div><div id="viewerProduct" style="position:absolute;top:58px;left:50%;transform:translateX(-50%);color:#fff;background:#0008;padding:6px 12px;border-radius:16px;font:bold 13px Arial;z-index:3;white-space:nowrap"></div><img id="viewerImg" alt="Product image"><div class="viewer-actions"><button id="viewerAdd" type="button">Add to cart</button><button id="viewerCart" type="button">🛒 View cart</button><button id="viewerOrder" type="button">Order on WhatsApp</button></div><div class="viewer-help">Swipe ◀ ▶ • Pinch to zoom • Drag • Double tap</div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER="97334485751";
+function absoluteImageUrl(path){if(!path)return "";return new URL(path,window.location.href).href}
+function buildWhatsAppLink(m){return "https://wa.me/"+WHATSAPP_NUMBER+"?text="+m}
+
+const PRODUCTS=[
+{id:1,cat:"Payals",nameAr:"خلخال فضي فاخر",name:"Fancy Silver Payal",price:"BHD 6.500",discount:0,img:"",emoji:"🦶"},
+{id:2,cat:"Payals",nameAr:"خلخال راجكوت",name:"Rajkot Design Payal",price:"BHD 7.200",discount:20,img:"",emoji:"🦶"},
+{id:3,cat:"Chains",nameAr:"سلسلة فضية 925 - 20 بوصة",name:'925 Silver Chain 20"',price:"BHD 9.000",discount:0,img:"",emoji:"⛓️"},
+{id:4,cat:"Chains",nameAr:"سلسلة فضية 925 - 24 بوصة",name:'925 Silver Chain 24"',price:"BHD 11.500",discount:0,img:"",emoji:"⛓️"},
+{id:5,cat:"Rings",nameAr:"خاتم فضي قابل للتعديل",name:"Silver Adjustable Ring",price:"BHD 3.200",discount:0,img:"",emoji:"💍"},
+{id:6,cat:"Bangles",nameAr:"طقم أساور أنيق",name:"Fashion Bangle Set",price:"BHD 5.800",discount:0,img:"",emoji:"⭕"},
+{id:7,cat:"Necklace",nameAr:"طقم لؤلؤ",name:"Pearl Set",price:"BHD 10.000",discount:0,img:"PearlsetHindi.jpg",emoji:"📿"},
+{id:8,cat:"Necklace",nameAr:"طقم لولو 1",name:"Lulu Set 1",price:"BHD 10.000",discount:0,img:"IMG-20260703-WA0029.jpg",emoji:"📿"},
+{id:9,cat:"Necklace",nameAr:"طقم لولو 2",name:"Lulu Set 2",price:"BHD 11.000",discount:0,img:"IMG-20260712-WA0060.jpg",emoji:"📿"},
+{id:10,cat:"Necklace",nameAr:"طقم لولو 3",name:"Lulu Set 3",price:"BHD 9.900",discount:0,img:"IMG-20260712-WA0061.jpg",emoji:"📿"},
+{id:11,cat:"Bracelet",nameAr:"إسورة فضية",name:"Silver Bracelet",price:"BHD 5.000",discount:0,img:"A8037Braclet.jpg",emoji:"💫"},
+{id:12,cat:"Necklace",nameAr:"طقم زركون 588",name:"588 Zarkon Set",price:"BHD 15.000",discount:0,img:"588zarkonset.jpg",
+images:Array.from({length:50},(_,i)=>"Zarkon"+(i+1)+".jpg"),emoji:"📿"},
+{id:13,cat:"Bracelet",nameAr:"إسورة زركون 1",name:"Zarkon Bangle 1",price:"BHD 7.000",discount:0,img:"514ZarkonBangel2.jpg",emoji:"💫"},
+{id:14,cat:"Bracelet",nameAr:"إسورة زركون 2",name:"Zarkon Bangle 2",price:"BHD 7.000",discount:0,img:"514ZarkonBangel3.jpg",emoji:"💫"},
+{id:15,cat:"Bracelet",nameAr:"إسورة زركون 3",name:"Zarkon Bangle 3",price:"BHD 7.000",discount:0,img:"514ZarkonBangel4.jpg",emoji:"💫"},
+{id:16,cat:"Anklets",nameAr:"خلخال A001",name:"Anklet A001",price:"BHD 7.000",discount:0,img:"A001Anklet.jpg",emoji:"🦶"},
+{id:17,cat:"Anklets",nameAr:"خلخال A002",name:"Anklet A002",price:"BHD 4.000",discount:0,img:"A002Anklet.jpg",emoji:"🦶"},
+{id:18,cat:"Anklets",nameAr:"خلخال 1102",name:"Anklet 1102",price:"BHD 2.000",discount:0,img:"1102Anklet.jpg",emoji:"🦶"}
+];
+
+const catNamesAr={Payals:"خلاخيل",Chains:"سلاسل",Rings:"خواتم",Bangles:"أساور",Necklace:"قلادات",Bracelet:"إسورة",Anklets:"خلخال"};
+const cats=["All",...new Set(PRODUCTS.map(p=>p.cat))];
+let active="All",cart=JSON.parse(localStorage.getItem("memzar_cart")||"{}"),currentLang="en",userCurrency=null,allRates=null;
+const T={en:{subtitle:"Fashion &amp; Silver Jewellery — Order on WhatsApp",tagline:"✨ We Believe in Quality — We Make You Shine ✨",promo:"🚚 Free delivery above BHD 10 <span>|</span> 💵 Cash on Delivery available",all:"All",add:"Add to order",order:"Order on WhatsApp →",drawer:"Your Order",empty:"Your cart is empty",total:"Total",policy:"<strong>↩ Returns &amp; Exchange:</strong> Items can be returned or exchanged within <strong>3 days</strong> of delivery. Product must be unused and in original condition.",lang:"عربي",one:"item",many:"items",selected:"selected — View cart",remove:"Remove",more:"add",moreText:"more for free delivery",free:"🎉 Free delivery unlocked!"},ar:{subtitle:"مجوهرات وأزياء فضية — اطلب عبر واتساب",tagline:"✨ نؤمن بالجودة — نجعلك تتألق ✨",promo:"🚚 توصيل مجاني للطلبات فوق 10 دينار <span>|</span> 💵 الدفع عند الاستلام متاح",all:"الكل",add:"أضف للطلب",order:"← اطلب عبر واتساب",drawer:"طلبك",empty:"سلتك فارغة",total:"المجموع",policy:"<strong>↩ الإرجاع والاستبدال:</strong> يمكن إرجاع أو استبدال المنتجات خلال <strong>3 أيام</strong> من التسليم. يجب أن يكون المنتج غير مستخدم وبحالته الأصلية.",lang:"EN",one:"منتج",many:"منتجات",selected:"محدد — عرض السلة",remove:"إزالة",more:"أضف",moreText:"أكثر للتوصيل المجاني",free:"🎉 تم تفعيل التوصيل المجاني!"}};
+function loc(s){if(currentLang!=="ar")return s;let d="٠١٢٣٤٥٦٧٨٩";return String(s).replace(/BHD/gi,"د.ب").replace(/[0-9]/g,x=>d[x])}
+function finalPrice(p){if(!p.discount)return p.price;let n=parseFloat(p.price.replace(/[^0-9.]/g,""));return "BHD "+(n-n*p.discount/100).toFixed(3)}
+function priceHTML(p){return p.discount?'<span class="strike">'+loc(p.price)+'</span>'+loc(finalPrice(p)):loc(p.price)}
+
+function renderTabs(){tabs.innerHTML=cats.map(c=>'<div class="tab '+(c===active?'active':'')+'" data-c="'+c+'">'+(c==="All"?T[currentLang].all:(currentLang==="ar"&&catNamesAr[c]?catNamesAr[c]:c))+"</div>").join("");tabs.querySelectorAll(".tab").forEach(x=>x.onclick=()=>{active=x.dataset.c;renderTabs();renderGrid()})}
+
+function renderGrid(){
+ let items=PRODUCTS.filter(p=>active==="All"||p.cat===active);
+ grid.innerHTML=items.map(p=>{
+  let n=currentLang==="ar"&&p.nameAr?p.nameAr:p.name;
+  let gallery=p.images&&p.images.length?p.images:[p.img].filter(Boolean);
+  let photoCount=p.images?p.images.length:0;
+  return '<div class="card"><div class="thumb" data-id="'+p.id+'">'+
+   (gallery.length?'<img src="'+gallery[0]+'" alt="'+n+'" loading="lazy">'+
+   (photoCount?'<span class="photo-count">📷 '+photoCount+'</span>':''):p.emoji)+
+   '</div><div class="info">'+(p.discount?'<span class="badge">'+loc(p.discount)+'% OFF</span><br>':'')+
+   '<div class="name">'+n+'</div><div class="price">'+priceHTML(p)+'</div>'+
+   (cart[p.id]?'<div class="qtybox"><button data-id="'+p.id+'" data-act="minus">−</button><span class="qtynum">'+loc(cart[p.id])+'</span><button data-id="'+p.id+'" data-act="plus">+</button></div>':'<button data-id="'+p.id+'" data-act="plus">'+T[currentLang].add+'</button>')+
+   '</div></div>'
+ }).join("");
+
+ grid.querySelectorAll(".thumb[data-id]").forEach(x=>{
+   x.onclick=()=>{let p=PRODUCTS.find(p=>p.id==x.dataset.id);let imgs=p.images&&p.images.length?p.images:[p.img].filter(Boolean);if(imgs.length)openGallery(imgs,p);};
+   let im=x.querySelector("img");if(im)im.onerror=()=>{im.style.display="none";x.querySelector(".photo-count")?.remove();let m=document.createElement("div");m.className="missing";m.innerText="Image unavailable";x.appendChild(m)}
+ });
+ grid.querySelectorAll("button[data-act]").forEach(b=>b.onclick=()=>changeQty(b.dataset.id,b.dataset.act))
+}
+
+function changeQty(id,a){if(a==="plus")cart[id]=(cart[id]||0)+1;else{cart[id]=(cart[id]||0)-1;if(cart[id]<=0)delete cart[id]}renderGrid();renderDrawer();updateCart()}
+function total(){return Object.entries(cart).reduce((s,[id,q])=>s+parseFloat(finalPrice(PRODUCTS.find(p=>p.id==id)).replace(/[^0-9.]/g,""))*q,0)}
+function updateCart(){localStorage.setItem("memzar_cart",JSON.stringify(cart));let t=T[currentLang],n=Object.values(cart).reduce((a,b)=>a+b,0);count.innerText=loc(n+" "+(n===1?t.one:t.many)+" "+t.selected);cartFabCount.style.display=n?"flex":"none";cartFabCount.innerText=loc(n);let lines=Object.entries(cart).map(([id,q])=>{let p=PRODUCTS.find(x=>x.id==id),s=q+" x "+p.name+" ("+finalPrice(p)+")\nImage: "+absoluteImageUrl(p.img||"");return s});let msg=encodeURIComponent("Hi Al Memzar Star Jewellery, I'd like to order:\n"+lines.join("\n")+"\nTotal: BHD "+total().toFixed(3));waLink.href=buildWhatsAppLink(msg)}
+function renderDrawer(){let e=Object.entries(cart);drawerItems.innerHTML=e.length?e.map(([id,q])=>{let p=PRODUCTS.find(x=>x.id==id);return '<div class="row"><div><div class="rname">'+p.name+'</div><div class="rprice">'+loc(finalPrice(p))+'</div></div><div class="rctrl"><button data-id="'+id+'" data-act="minus">−</button><span class="qtynum">'+loc(q)+'</span><button data-id="'+id+'" data-act="plus">+</button><span class="remove" data-id="'+id+'">'+T[currentLang].remove+'</span></div></div>'}).join(""):'<div class="empty">'+T[currentLang].empty+'</div>';grandTotal.innerText=loc("BHD "+total().toFixed(3));drawerItems.querySelectorAll("button").forEach(b=>b.onclick=()=>changeQty(b.dataset.id,b.dataset.act));drawerItems.querySelectorAll(".remove").forEach(x=>x.onclick=()=>{delete cart[x.dataset.id];renderDrawer();renderGrid();updateCart()})}
+function openDrawer(){renderDrawer();overlay.classList.add("show");drawer.classList.add("show")}function closeDrawer(){overlay.classList.remove("show");drawer.classList.remove("show")}
+
+const viewer=document.getElementById("viewer"),vi=document.getElementById("viewerImg"),viewerProduct=document.getElementById("viewerProduct"),viewerAdd=document.getElementById("viewerAdd"),viewerCart=document.getElementById("viewerCart"),viewerOrder=document.getElementById("viewerOrder");
+let gallery=[],gi=0,currentProduct=null,sc=1,tx=0,ty=0,pts=new Map(),sd=0,ss=1,lx=0,ly=0,lastTap=0;
+function transform(){vi.style.transform="translate(calc(-50% + "+tx+"px),calc(-50% + "+ty+"px)) scale("+sc+")"}
+function showPhoto(){if(!gallery.length)return;vi.src=gallery[gi];viewerCounter.innerText=(gi+1)+" / "+gallery.length;viewerProduct.innerText=currentProduct?(currentProduct.name+" • "+currentProduct.price):"";sc=1;tx=0;ty=0;transform()}
+function openGallery(arr,p){gallery=arr;currentProduct=p||null;gi=0;showPhoto();viewer.classList.add("show")}
+function closeImage(){viewer.classList.remove("show");vi.src="";gallery=[];currentProduct=null;viewerProduct.innerText=""}
+function nextPhoto(){if(gallery.length){gi=(gi+1)%gallery.length;showPhoto()}}
+function prevPhoto(){if(gallery.length){gi=(gi-1+gallery.length)%gallery.length;showPhoto()}}
+viewerPrev.onclick=e=>{e.preventDefault();e.stopPropagation();prevPhoto()};
+viewerNext.onclick=e=>{e.preventDefault();e.stopPropagation();nextPhoto()};
+viewerClose.onclick=e=>{e.preventDefault();e.stopPropagation();closeImage()};
+viewerAdd.onclick=e=>{e.preventDefault();e.stopPropagation();if(currentProduct){cart[currentProduct.id]=(cart[currentProduct.id]||0)+1;renderGrid();renderDrawer();updateCart();viewerAdd.innerText="✓ Added to cart";setTimeout(()=>viewerAdd.innerText="Add to cart",1200)}};
+viewerCart.onclick=e=>{e.preventDefault();e.stopPropagation();closeImage();openDrawer()};
+viewerOrder.onclick=e=>{e.preventDefault();e.stopPropagation();if(currentProduct){cart[currentProduct.id]=(cart[currentProduct.id]||0)+1;renderGrid();renderDrawer();updateCart();let imageUrl=absoluteImageUrl(gallery[gi]);let msg=encodeURIComponent("Hi Al Memzar Star Jewellery, I want to order:\nProduct: "+currentProduct.name+"\nPrice: "+currentProduct.price+"\nPhoto: "+imageUrl);window.location.href=buildWhatsAppLink(msg)}};
+vi.onclick=e=>e.stopPropagation();
+function dist(a,b){return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
+viewer.addEventListener("pointerdown",e=>{if(e.target.closest("button,.viewer-actions"))return;e.preventDefault();pts.set(e.pointerId,e);viewer.setPointerCapture(e.pointerId);if(pts.size===1){lx=e.clientX;ly=e.clientY;let n=Date.now();if(n-lastTap<300){sc=sc>1?1:2;tx=ty=0;transform()}lastTap=n}else if(pts.size===2){let a=[...pts.values()];sd=dist(a[0],a[1]);ss=sc}});
+viewer.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,e);let a=[...pts.values()];if(a.length===2){sc=Math.max(1,Math.min(5,ss*dist(a[0],a[1])/sd));transform()}else if(a.length===1&&sc>1){tx+=e.clientX-lx;ty+=e.clientY-ly;lx=e.clientX;ly=e.clientY;transform()}});
+["pointerup","pointercancel"].forEach(x=>viewer.addEventListener(x,e=>pts.delete(e.pointerId)));
+viewer.addEventListener("wheel",e=>{e.preventDefault();sc=Math.max(1,Math.min(5,sc+(e.deltaY<0?.25:-.25)));transform()},{passive:false});
+let swipeStartX=0;
+viewer.addEventListener("touchstart",e=>{if(e.target.closest("button,.viewer-actions"))return;if(e.touches.length===1)swipeStartX=e.touches[0].clientX},{passive:true});
+viewer.addEventListener("touchend",e=>{if(e.target.closest("button,.viewer-actions"))return;if(sc===1&&e.changedTouches.length===1){let dx=e.changedTouches[0].clientX-swipeStartX;if(Math.abs(dx)>50){e.preventDefault();dx<0?nextPhoto():prevPhoto()}}},{passive:false});
+viewer.addEventListener("click",e=>{if(e.target===viewer)closeImage()});
+document.addEventListener("keydown",e=>{if(!viewer.classList.contains("show"))return;if(e.key==="ArrowRight")nextPhoto();else if(e.key==="ArrowLeft")prevPhoto();else if(e.key==="Escape")closeImage()});
+
+langFab.onclick=()=>{currentLang=currentLang==="en"?"ar":"en";applyLang()};
+cartFab.onclick=openDrawer;count.onclick=openDrawer;overlay.onclick=closeDrawer;
+currencyFab.onclick=e=>{e.stopPropagation();currencyMenu.classList.toggle("show")};document.addEventListener("click",()=>currencyMenu.classList.remove("show"));
+function applyLang(){let t=T[currentLang];document.body.dir=currentLang==="ar"?"rtl":"ltr";subtitleText.innerHTML=t.subtitle;taglineText.innerText=t.tagline;promoText.innerHTML=t.promo;policyText.innerHTML=t.policy;drawerTitle.innerText=t.drawer;totalLabel.innerText=t.total;waLinkText.innerText=t.order;langFab.innerText=t.lang;renderTabs();renderGrid();renderDrawer();updateCart()}
+renderTabs();renderGrid();renderDrawer();updateCart();
+</script>
+</body>
+</html>
