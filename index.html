@@ -98,11 +98,6 @@ const WHATSAPP_NUMBER="97334485751";
 function absoluteImageUrl(path){if(!path)return "";return new URL(path,window.location.href).href}
 function buildWhatsAppLink(m){return "https://wa.me/"+WHATSAPP_NUMBER+"?text="+m}
 
-/* NAYA JPG FILE AUR PRICE ADD KARNE KA TARIQA:
-   Niche waali list me bas nayi line copy-paste karke photo ka name aur price badal do!
-   Single photo: img: "yourfile.jpg"
-   Multiple photos (Left/Right swipe ke liye): images: ["photo1.jpg", "photo2.jpg"]
-*/
 const PRODUCTS=[
 {id:1,cat:"Payals",nameAr:"خلخال فضي فاخر",name:"Fancy Silver Payal",price:"BHD 6.500",discount:0,img:"",emoji:"🦶"},
 {id:2,cat:"Payals",nameAr:"خلخال راجكوت",name:"Rajkot Design Payal",price:"BHD 7.200",discount:20,img:"",emoji:"🦶"},
@@ -115,21 +110,14 @@ const PRODUCTS=[
 {id:9,cat:"Necklace",nameAr:"طقم لولو 2",name:"Lulu Set 2",price:"BHD 11.000",discount:0,img:"IMG-20260712-WA0060.jpg",emoji:"📿"},
 {id:10,cat:"Necklace",nameAr:"طقم لولو 3",name:"Lulu Set 3",price:"BHD 9.900",discount:0,img:"IMG-20260712-WA0061.jpg",emoji:"📿"},
 {id:11,cat:"Bracelet",nameAr:"إسورة فضية",name:"Silver Bracelet",price:"BHD 5.000",discount:0,img:"A8037Braclet.jpg",emoji:"💫"},
-
-/* Multi-photo Scroll View Zarkon Set (50 photos) */
 {id:12,cat:"Necklace",nameAr:"طقم زركون 588",name:"588 Zarkon Set",price:"BHD 15.000",discount:0,img:"588zarkonset.jpg",
 images:Array.from({length:50},(_,i)=>"Zarkon"+(i+1)+".jpg"),emoji:"📿"},
-
 {id:13,cat:"Bracelet",nameAr:"إسورة زركون 1",name:"Zarkon Bangle 1",price:"BHD 7.000",discount:0,img:"514ZarkonBangel2.jpg",emoji:"💫"},
 {id:14,cat:"Bracelet",nameAr:"إسورة زركون 2",name:"Zarkon Bangle 2",price:"BHD 7.000",discount:0,img:"514ZarkonBangel3.jpg",emoji:"💫"},
 {id:15,cat:"Bracelet",nameAr:"إسورة زركون 3",name:"Zarkon Bangle 3",price:"BHD 7.000",discount:0,img:"514ZarkonBangel4.jpg",emoji:"💫"},
 {id:16,cat:"Anklets",nameAr:"خلخال A001",name:"Anklet A001",price:"BHD 7.000",discount:0,img:"A001Anklet.jpg",emoji:"🦶"},
 {id:17,cat:"Anklets",nameAr:"خلخال A002",name:"Anklet A002",price:"BHD 4.000",discount:0,img:"A002Anklet.jpg",emoji:"🦶"},
 {id:18,cat:"Anklets",nameAr:"خلخال 1102",name:"Anklet 1102",price:"BHD 2.000",discount:0,img:"1102Anklet.jpg",emoji:"🦶"}
-
-/* Naya Item Add Karne Ke Liye Is Format Ko Copy Karke Paste Karein:
-,{id:19,cat:"Necklace",nameAr:"طقم جديد",name:"New Item Name",price:"BHD 8.500",discount:0,img:"your_image.jpg",emoji:"📿"}
-*/
 ];
 
 const catNamesAr={Payals:"خلاخيل",Chains:"سلاسل",Rings:"خواتم",Bangles:"أساور",Necklace:"قلادات",Bracelet:"إسورة",Anklets:"خلخال"};
