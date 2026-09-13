@@ -40,7 +40,7 @@
 [ADset| ​طقم]
  ADset@20.jpg
  ADset2@20.jpg
-# ADset3@20.jpg
-# ADset4@20.jpg
-# ADset5@20.jpg
+ ADset3@20.jpg
+ ADset4@20.jpg
+ ADset5@20.jpg
 
