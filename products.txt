@@ -38,8 +38,8 @@
 # Bracelet1@18.jpg
 
 [ADset| ​طقم]
-# ADset1@20.jpg
-# ADset2@20.jpg
+ ADset@20.jpg
+ ADset2@20.jpg
 # ADset3@20.jpg
 # ADset4@20.jpg
 # ADset5@20.jpg
