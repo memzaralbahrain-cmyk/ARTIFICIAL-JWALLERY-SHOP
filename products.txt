@@ -1,0 +1,38 @@
+# ============================================================
+#  Al Memzar Star Jewellery — Product List
+#  Ye file EDIT karke naye products add karo — HTML/code CHHUNE
+#  ki zaroorat nahi hai.
+#
+#  STEP 1: Photo file ka naam is tarah rakho:
+#          ProductName@Price.jpg
+#          Example:  GoldRing1@30.jpg   (price = BHD 30.000)
+#                    ZarkonBangel1@20.jpg
+#                    RajkotSet@45.5.jpg   (decimal bhi chalega)
+#
+#  STEP 2: Us photo file ko index.html ke SAME folder mein
+#          GitHub par upload karo (jahan ye products.txt hai).
+#
+#  STEP 3: Neeche jis category mein add karna hai, uske section
+#          ke andar ek naya line mein sirf filename likh do.
+#          Naya category chahiye to [CategoryName] likh ke naya
+#          section bana lo (Arabic naam optional: [Rings|خواتم]).
+#
+#  STEP 4: Save/commit karo aur site refresh karo — product
+#          apne aap dikhne lagega, price bhi apne aap aa jayegi.
+#
+#  Lines jo # se shuru hoti hain wo sirf notes hain, ignore hoti hain.
+# ============================================================
+
+[Rings|خواتم]
+# GoldRing1@30.jpg
+# GoldRing2@25.jpg
+
+[Bangles|أساور]
+# ZarkonBangel1@20.jpg
+# ZarkonBangel2@15.jpg
+
+[Anklets|خلاخيل]
+# AnkletDesign1@12.jpg
+
+[Bracelet|إسورة]
+# Bracelet1@18.jpg
