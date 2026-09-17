@@ -32,7 +32,7 @@
 # ZarkonBangel2@15.jpg
 
 [Anklets|خلاخيل]
-# AnkletDesign1@12.jpg
+ Anklet2@3.jpg
 
 [Bracelet|إسورة]
 # Bracelet1@18.jpg
