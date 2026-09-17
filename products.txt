@@ -37,7 +37,7 @@
  A002Anklet1@4.jpg
 
 [Bracelet|إسورة]
-# Bracelet1@18.jpg
+# Bracelet1@1.jpg
 
 [ADset| ​طقم]
  ADset@20.jpg
