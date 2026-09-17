@@ -33,8 +33,8 @@
 
 [Anklets|خلاخيل]
  Anklet2@3.jpg
-A002Anklet@4.jpg
-A002Anklet1@4.jpg
+ A002Anklet@4.jpg
+ A002Anklet1@4.jpg
 
 [Bracelet|إسورة]
 # Bracelet1@18.jpg
