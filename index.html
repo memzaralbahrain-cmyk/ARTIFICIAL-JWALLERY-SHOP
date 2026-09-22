@@ -8,7 +8,7 @@
 <style>
 :root{--bg:#fdf3f0;--card:#fff;--gold:#b76e79;--gold2:#9c4a56;--cream:#3d2b2e;--line:#f0d9d3;--wa:#25d366}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--cream);font-family:Georgia,serif;padding-bottom:92px}
+body{background:var(--bg);color:var(--cream);font-family:Georgia,serif;padding-bottom:150px}
 header{text-align:center;padding:28px 20px 20px;border-bottom:1px solid var(--line)}
 .logo{width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:10px;box-shadow:0 4px 14px #0006}
 .eyebrow{font:11px Arial;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
@@ -19,12 +19,19 @@ header p{font:12px Arial;color:#8a7570;margin-top:4px}.tagline{font:italic 13px 
 .thumb{aspect-ratio:1;background:linear-gradient(135deg,#f8e4de,#fdf3f0);display:flex;align-items:center;justify-content:center;font-size:34px;overflow:hidden;cursor:zoom-in;position:relative}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}.missing{font:12px Arial;color:#8a7570}
 .photo-count{position:absolute;right:7px;bottom:7px;background:#0009;color:#fff;padding:4px 7px;border-radius:12px;font:11px Arial}
+.heart-btn{position:absolute;left:7px;top:7px;width:28px;height:28px;border-radius:50%;background:#fffc;border:0;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;cursor:pointer}
+body[dir=rtl] .heart-btn{left:auto;right:7px}
 .info{padding:10px 12px 14px}.name{font-size:14px}.desc{font:11px Arial;color:#7a6a66;margin-top:2px}.price{font:13px Arial;color:var(--gold);margin-top:4px}
 .strike{color:#7a6a66;text-decoration:line-through;font-size:11px;margin-right:6px}.fx,.review-line{font:11px Arial;color:#8a7570;margin-top:3px}.review-line{cursor:pointer}.stars{color:#d4a017;letter-spacing:1px}
 .badge{display:inline-block;background:#c0392b;color:#fff;font:10px Arial;font-weight:bold;padding:2px 6px;border-radius:4px;margin-bottom:4px}.card button{margin-top:8px;width:100%;background:none;border:1px solid var(--gold);color:var(--gold2);padding:6px;border-radius:6px;font:12px Arial}
 .qtybox{margin-top:8px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--gold);border-radius:6px;overflow:hidden}.qtybox button{margin:0;border:0;width:34px;padding:6px 0;background:var(--gold);color:#1a1712;font-size:16px;font-weight:bold}.qtynum{font:13px Arial;color:var(--gold2)}
 .promo{background:linear-gradient(90deg,#f6e2dd,#fbeae5);border-block:1px solid var(--line);padding:8px;text-align:center;font:11.5px Arial;color:var(--gold2)}.promo span{margin:0 8px}
-.cartbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--gold);padding:10px 16px;font-family:Arial;z-index:30}.toprow{display:flex;justify-content:space-between;align-items:center;gap:10px}.count{font-size:13px;color:#6b5a56;text-decoration:underline}.cartbar a{background:var(--wa);color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:bold;white-space:nowrap}.delivery-msg{font-size:11px;color:#8a7570;margin-top:4px}.unlocked{color:#4c9f52}
+.cartbar{position:fixed;bottom:58px;left:0;right:0;background:var(--card);border-top:1px solid var(--gold);padding:10px 16px;font-family:Arial;z-index:30}
+.bottomnav{position:fixed;left:0;right:0;bottom:0;height:58px;background:var(--card);border-top:1px solid var(--line);display:flex;z-index:35;box-shadow:0 -2px 10px #0001}
+.bottomnav .navitem{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:10px Arial;color:#8a7570;position:relative;background:none;border:0;padding:6px 0}
+.bottomnav .navitem .navicon{font-size:19px;line-height:1}
+.bottomnav .navitem.active{color:var(--gold2)}
+.navbadge{position:absolute;top:2px;right:calc(50% - 20px);background:#c0392b;color:#fff;font:9px Arial;font-weight:bold;min-width:15px;height:15px;border-radius:8px;display:none;align-items:center;justify-content:center;padding:0 3px}.toprow{display:flex;justify-content:space-between;align-items:center;gap:10px}.count{font-size:13px;color:#6b5a56;text-decoration:underline}.cartbar a{background:var(--wa);color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:bold;white-space:nowrap}.delivery-msg{font-size:11px;color:#8a7570;margin-top:4px}.unlocked{color:#4c9f52}
 footer{padding:20px;border-top:1px solid var(--line);font:11.5px Arial;text-align:center;color:#7a6a66}.policy{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:16px;line-height:1.6}.policy strong,.biz-info .name{color:var(--gold2)}.biz-info{line-height:1.7}
 .fab{position:fixed;z-index:40;background:var(--card);border:1px solid var(--gold);box-shadow:0 3px 10px #0002}.cart-fab{top:14px;right:14px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}.badge-count{position:absolute;top:-4px;right:-4px;background:#c0392b;color:#fff;font:11px Arial;font-weight:bold;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center}.lang-fab{top:14px;left:14px;height:34px;padding:0 12px;border-radius:17px;font:bold 12px Arial;color:var(--gold2);display:flex;align-items:center;justify-content:center}
 .curr-wrap{position:fixed;top:56px;left:14px;z-index:40}.currency-fab{position:static}.curr-menu{display:none;position:absolute;top:40px;left:0;background:var(--card);border:1px solid var(--gold);border-radius:10px;max-height:240px;overflow:auto;min-width:70px}.curr-menu.show{display:block}.curr-opt{padding:9px 14px;font:12.5px Arial;border-bottom:1px solid var(--line)}
@@ -100,8 +107,15 @@ body[dir=rtl] .chat-fab,body[dir=rtl] .chat-panel{right:auto;left:14px}
 <div class="tabs" id="tabs"></div><div class="grid" id="grid"></div>
 <footer><div class="policy" id="policyText"><strong>↩ Returns &amp; Exchange:</strong> Items can be returned or exchanged within <strong>3 days</strong> of delivery. Product must be unused and in original condition.</div><div class="biz-info"><div class="name">Al Memzar Star Jewellery W.L.L</div>329, Block 302, Building 447, Manama, Kingdom of Bahrain<br>CR / License No: 137064-1<br><a href="https://maps.app.goo.gl/jm4BKxta1JUzBbsx5?g_st=awb" target="_blank" style="color:var(--gold2);font-weight:bold;text-decoration:underline">📍 View on Google Maps</a></div></footer>
 <div class="cartbar"><div class="toprow"><span class="count" id="count">0 items selected — View cart</span><a id="waLink" href="#"><span id="waLinkText">Order on WhatsApp →</span></a></div><div class="delivery-msg" id="deliveryMsg"></div></div>
+<div class="bottomnav">
+ <button class="navitem active" id="navHome" type="button"><span class="navicon">🏠</span><span id="navHomeText">Home</span></button>
+ <button class="navitem" id="navCategories" type="button"><span class="navicon">📂</span><span id="navCategoriesText">Categories</span></button>
+ <button class="navitem" id="navCart" type="button"><span class="navicon">🛒</span><span class="navbadge" id="navCartBadge">0</span><span id="navCartText">My Cart</span></button>
+ <button class="navitem" id="navWishlist" type="button"><span class="navicon">🤍</span><span class="navbadge" id="navWishBadge">0</span><span id="navWishText">Wishlist</span></button>
+ <button class="navitem" id="navAccount" type="button"><span class="navicon">👤</span><span id="navAccountText">Account</span></button>
+</div>
 
-<div class="overlay" id="overlay"></div><div class="drawer" id="drawer"><div class="drawer-head"><button class="drawer-back" id="drawerBack" type="button">← Back</button><h3 id="drawerTitle">Your Order</h3><div class="drawer-head-right"><span class="close" id="closeDrawer" role="button" aria-label="Close">✕</span></div></div><div class="drawer-items" id="drawerItems"></div><div class="drawer-footer"><div class="grand-total"><span id="totalLabel">Total</span><span id="grandTotal">BHD 0.000</span></div></div></div>
+<div class="overlay" id="overlay"></div><div class="drawer" id="drawer"><div class="drawer-head"><button class="drawer-back" id="drawerBack" type="button">← Back</button><h3 id="drawerTitle">Your Order</h3><div class="drawer-head-right"><span class="close" id="closeDrawer" role="button" aria-label="Close">✕</span></div></div><div class="drawer-items" id="drawerItems"></div><div class="drawer-footer" id="drawerFooter"><div class="grand-total"><span id="totalLabel">Total</span><span id="grandTotal">BHD 0.000</span></div></div></div>
 <div class="toast" id="toast"></div>
 
 <div id="viewer">
@@ -185,7 +199,7 @@ function fromNamed({idStart,cat,catAr,emoji="💎",files}){
 }
 
 const PRODUCTS=[
-{id:1,cat:"Payals",nameAr:"خلخال فضي فاخر",name:"Fancy Silver Payal",price:"BHD 2.500",discount:0,img:"",emoji:"🦶"},
+{id:1,cat:"Payals",nameAr:"خلخال فضي فاخر",name:"Fancy Silver Payal",price:"BHD 6.500",discount:0,img:"",emoji:"🦶"},
 {id:2,cat:"Payals",nameAr:"خلخال راجكوت",name:"Rajkot Design Payal",price:"BHD 7.200",discount:20,img:"",emoji:"🦶"},
 {id:3,cat:"Chains",nameAr:"سلسلة فضية 925 - 20 بوصة",name:'925 Silver Chain 20"',price:"BHD 9.000",discount:0,img:"",emoji:"⛓️"},
 {id:4,cat:"Chains",nameAr:"سلسلة فضية 925 - 24 بوصة",name:'925 Silver Chain 24"',price:"BHD 11.500",discount:0,img:"",emoji:"⛓️"},
@@ -216,7 +230,11 @@ PRODUCTS.push(...makeSeries({idStart:100,cat:"Zarkon",catAr:"زركون",namePre
 
 const cats=["All",...new Set(PRODUCTS.map(p=>p.cat))];
 let active="All",cart=JSON.parse(localStorage.getItem("memzar_cart")||"{}"),currentLang="en",userCurrency=null,allRates=null;
-const T={en:{subtitle:"Fashion &amp; Silver Jewellery — Order on WhatsApp",tagline:"✨ We Believe in Quality — We Make You Shine ✨",promo:"🚚 Free delivery above BHD 10 <span>|</span> 💵 Cash on Delivery available",all:"All",add:"Add to order",order:"Order on WhatsApp →",drawer:"Your Order",empty:"Your cart is empty",total:"Total",policy:"<strong>↩ Returns &amp; Exchange:</strong> Items can be returned or exchanged within <strong>3 days</strong> of delivery. Product must be unused and in original condition.",lang:"عربي",one:"item",many:"items",selected:"selected — View cart",remove:"Remove",back:"← Back",more:"add",moreText:"more for free delivery",free:"🎉 Free delivery unlocked!",chatTitle:"Chat with us 💬",chatWelcome:"Hi! 👋 Ask us anything about our jewellery — we'll reply on WhatsApp.",chatPlaceholder:"Type your question..."},ar:{subtitle:"مجوهرات وأزياء فضية — اطلب عبر واتساب",tagline:"✨ نؤمن بالجودة — نجعلك تتألق ✨",promo:"🚚 توصيل مجاني للطلبات فوق 10 دينار <span>|</span> 💵 الدفع عند الاستلام متاح",all:"الكل",add:"أضف للطلب",order:"← اطلب عبر واتساب",drawer:"طلبك",empty:"سلتك فارغة",total:"المجموع",policy:"<strong>↩ الإرجاع والاستبدال:</strong> يمكن إرجاع أو استبدال المنتجات خلال <strong>3 أيام</strong> من التسليم. يجب أن يكون المنتج غير مستخدم وبحالته الأصلية.",lang:"EN",one:"منتج",many:"منتجات",selected:"محدد — عرض السلة",remove:"إزالة",back:"← رجوع",more:"أضف",moreText:"أكثر للتوصيل المجاني",free:"🎉 تم تفعيل التوصيل المجاني!",chatTitle:"تواصل معنا 💬",chatWelcome:"مرحباً! 👋 اسألنا عن أي شيء يخص مجوهراتنا — سنرد عبر واتساب.",chatPlaceholder:"اكتب سؤالك..."}};
+let wishlist=JSON.parse(localStorage.getItem("memzar_wishlist")||"[]"),drawerMode="cart";
+function isWished(id){return wishlist.includes(String(id))}
+function toggleWishlist(id){id=String(id);let i=wishlist.indexOf(id);if(i>-1)wishlist.splice(i,1);else wishlist.push(id);localStorage.setItem("memzar_wishlist",JSON.stringify(wishlist));renderGrid();updateNavBadges();if(drawerMode==="wishlist")renderDrawer()}
+function updateNavBadges(){let n=Object.values(cart).reduce((a,b)=>a+b,0);navCartBadge.innerText=n;navCartBadge.style.display=n?"flex":"none";navWishBadge.innerText=wishlist.length;navWishBadge.style.display=wishlist.length?"flex":"none"}
+const T={en:{subtitle:"Fashion &amp; Silver Jewellery — Order on WhatsApp",tagline:"✨ We Believe in Quality — We Make You Shine ✨",promo:"🚚 Free delivery above BHD 10 <span>|</span> 💵 Cash on Delivery available",all:"All",add:"Add to order",order:"Order on WhatsApp →",drawer:"Your Order",empty:"Your cart is empty",total:"Total",policy:"<strong>↩ Returns &amp; Exchange:</strong> Items can be returned or exchanged within <strong>3 days</strong> of delivery. Product must be unused and in original condition.",lang:"عربي",one:"item",many:"items",selected:"selected — View cart",remove:"Remove",back:"← Back",more:"add",moreText:"more for free delivery",free:"🎉 Free delivery unlocked!",chatTitle:"Chat with us 💬",chatWelcome:"Hi! 👋 Ask us anything about our jewellery — we'll reply on WhatsApp.",chatPlaceholder:"Type your question...",home:"Home",categories:"Categories",cart:"My Cart",wishlistNav:"Wishlist",account:"Account",wishlistTitle:"Your Wishlist",wishlistEmpty:"No items in your wishlist yet"},ar:{subtitle:"مجوهرات وأزياء فضية — اطلب عبر واتساب",tagline:"✨ نؤمن بالجودة — نجعلك تتألق ✨",promo:"🚚 توصيل مجاني للطلبات فوق 10 دينار <span>|</span> 💵 الدفع عند الاستلام متاح",all:"الكل",add:"أضف للطلب",order:"← اطلب عبر واتساب",drawer:"طلبك",empty:"سلتك فارغة",total:"المجموع",policy:"<strong>↩ الإرجاع والاستبدال:</strong> يمكن إرجاع أو استبدال المنتجات خلال <strong>3 أيام</strong> من التسليم. يجب أن يكون المنتج غير مستخدم وبحالته الأصلية.",lang:"EN",one:"منتج",many:"منتجات",selected:"محدد — عرض السلة",remove:"إزالة",back:"← رجوع",more:"أضف",moreText:"أكثر للتوصيل المجاني",free:"🎉 تم تفعيل التوصيل المجاني!",chatTitle:"تواصل معنا 💬",chatWelcome:"مرحباً! 👋 اسألنا عن أي شيء يخص مجوهراتنا — سنرد عبر واتساب.",chatPlaceholder:"اكتب سؤالك...",home:"الرئيسية",categories:"الفئات",cart:"سلتي",wishlistNav:"المفضلة",account:"حسابي",wishlistTitle:"مفضلتك",wishlistEmpty:"لا توجد عناصر في المفضلة بعد"}};
 function loc(s){if(currentLang!=="ar")return s;let d="٠١٢٣٤٥٦٧٨٩";return String(s).replace(/BHD/gi,"د.ب").replace(/[0-9]/g,x=>d[x])}
 function finalPrice(p){if(!p.discount)return p.price;let n=parseFloat(p.price.replace(/[^0-9.]/g,""));return "BHD "+(n-n*p.discount/100).toFixed(3)}
 function priceHTML(p){return p.discount?'<span class="strike">'+loc(p.price)+'</span>'+loc(finalPrice(p)):loc(p.price)}
@@ -229,7 +247,7 @@ function renderGrid(){
   let n=currentLang==="ar"&&p.nameAr?p.nameAr:p.name;
   let gallery=p.images&&p.images.length?p.images:[p.img].filter(Boolean);
   let photoCount=p.images?p.images.length:0;
-  return '<div class="card"><div class="thumb" data-id="'+p.id+'">'+
+  return '<div class="card"><div class="thumb" data-id="'+p.id+'"><button class="heart-btn" data-wish="'+p.id+'" aria-label="wishlist">'+(isWished(p.id)?"❤️":"🤍")+'</button>'+
    (gallery.length?'<img src="'+gallery[0]+'" alt="'+n+'" loading="lazy">'+
    (photoCount?'<span class="photo-count">📷 '+photoCount+'</span>':''):p.emoji)+
    '</div><div class="info">'+(p.discount?'<span class="badge">'+loc(p.discount)+'% OFF</span><br>':'')+
@@ -243,13 +261,26 @@ function renderGrid(){
    let im=x.querySelector("img");if(im)im.onerror=()=>{im.style.display="none";x.querySelector(".photo-count")?.remove();let m=document.createElement("div");m.className="missing";m.innerText="Image unavailable";x.appendChild(m)}
  });
  grid.querySelectorAll("button[data-act]").forEach(b=>b.onclick=()=>changeQty(b.dataset.id,b.dataset.act))
+ grid.querySelectorAll("[data-wish]").forEach(b=>b.onclick=e=>{e.stopPropagation();toggleWishlist(b.dataset.wish)})
 }
 
 function changeQty(id,a){if(a==="plus")cart[id]=(cart[id]||0)+1;else{cart[id]=(cart[id]||0)-1;if(cart[id]<=0)delete cart[id]}renderGrid();renderDrawer();updateCart()}
 function total(){return Object.entries(cart).reduce((s,[id,q])=>s+parseFloat(finalPrice(PRODUCTS.find(p=>p.id==id)).replace(/[^0-9.]/g,""))*q,0)}
-function updateCart(){localStorage.setItem("memzar_cart",JSON.stringify(cart));let t=T[currentLang],n=Object.values(cart).reduce((a,b)=>a+b,0);count.innerText=loc(n+" "+(n===1?t.one:t.many)+" "+t.selected);cartFabCount.style.display=n?"flex":"none";cartFabCount.innerText=loc(n);let lines=Object.entries(cart).map(([id,q])=>{let p=PRODUCTS.find(x=>x.id==id),s=q+" x "+p.name+" ("+finalPrice(p)+")\nImage: "+absoluteImageUrl(p.img||"");return s});let msg=encodeURIComponent("Hi Al Memzar Star Jewellery, I'd like to order:\n"+lines.join("\n")+"\nTotal: BHD "+total().toFixed(3));waLink.href=buildWhatsAppLink(msg)}
-function renderDrawer(){let e=Object.entries(cart);drawerItems.innerHTML=e.length?e.map(([id,q])=>{let p=PRODUCTS.find(x=>x.id==id),imgs=p.images&&p.images.length?p.images:[p.img].filter(Boolean),src=imgs[0]||"";return '<div class="row">'+(src?'<img class="rthumb" src="'+src+'" alt="'+p.name+'" onerror="this.style.display=\'none\'">':'<div class="rthumb" style="display:flex;align-items:center;justify-content:center;font-size:25px">'+(p.emoji||"🛍️")+'</div>')+'<div class="rinfo"><div class="rname">'+p.name+'</div><div class="rprice">'+loc(finalPrice(p))+'</div></div><div class="rctrl"><button data-id="'+id+'" data-act="minus">−</button><span class="qtynum">'+loc(q)+'</span><button data-id="'+id+'" data-act="plus">+</button><span class="remove" data-id="'+id+'">'+T[currentLang].remove+'</span></div></div>'}).join(""):'<div class="empty">'+T[currentLang].empty+'</div>';grandTotal.innerText=loc("BHD "+total().toFixed(3));drawerItems.querySelectorAll("button").forEach(b=>b.onclick=()=>changeQty(b.dataset.id,b.dataset.act));drawerItems.querySelectorAll(".remove").forEach(x=>x.onclick=()=>{delete cart[x.dataset.id];renderDrawer();renderGrid();updateCart()})}
-let uiState="none";function openDrawer(push=true){if(uiState==="viewer")closeImage(true);renderDrawer();overlay.classList.add("show");drawer.classList.add("show");if(push&&uiState!=="cart"){history.pushState({memzar:"cart"},"","#cart")}uiState="cart"}function closeDrawer(fromPop=false){overlay.classList.remove("show");drawer.classList.remove("show");if(!fromPop&&history.state&&history.state.memzar==="cart")history.back();uiState="none"}
+function updateCart(){localStorage.setItem("memzar_cart",JSON.stringify(cart));updateNavBadges();let t=T[currentLang],n=Object.values(cart).reduce((a,b)=>a+b,0);count.innerText=loc(n+" "+(n===1?t.one:t.many)+" "+t.selected);cartFabCount.style.display=n?"flex":"none";cartFabCount.innerText=loc(n);let lines=Object.entries(cart).map(([id,q])=>{let p=PRODUCTS.find(x=>x.id==id),s=q+" x "+p.name+" ("+finalPrice(p)+")\nImage: "+absoluteImageUrl(p.img||"");return s});let msg=encodeURIComponent("Hi Al Memzar Star Jewellery, I'd like to order:\n"+lines.join("\n")+"\nTotal: BHD "+total().toFixed(3));waLink.href=buildWhatsAppLink(msg)}
+function renderDrawer(){
+ if(drawerMode==="wishlist"){
+  let items=wishlist.map(id=>PRODUCTS.find(p=>p.id==id)).filter(Boolean);
+  drawerItems.innerHTML=items.length?items.map(p=>{
+   let n=currentLang==="ar"&&p.nameAr?p.nameAr:p.name;
+   let imgs=p.images&&p.images.length?p.images:[p.img].filter(Boolean),src=imgs[0]||"";
+   return '<div class="row">'+(src?'<img class="rthumb" src="'+src+'" alt="'+n+'" onerror="this.style.display=\'none\'">':'<div class="rthumb" style="display:flex;align-items:center;justify-content:center;font-size:25px">'+(p.emoji||"🛍️")+'</div>')+'<div class="rinfo"><div class="rname">'+n+'</div><div class="rprice">'+loc(finalPrice(p))+'</div></div><div class="rctrl"><button data-addcart="'+p.id+'" style="width:auto;padding:0 10px">'+T[currentLang].add+'</button><span class="remove" data-unwish="'+p.id+'">'+T[currentLang].remove+'</span></div></div>'
+  }).join(""):'<div class="empty">'+T[currentLang].wishlistEmpty+'</div>';
+  drawerItems.querySelectorAll("[data-addcart]").forEach(b=>b.onclick=()=>changeQty(b.dataset.addcart,"plus"));
+  drawerItems.querySelectorAll("[data-unwish]").forEach(x=>x.onclick=()=>{toggleWishlist(x.dataset.unwish);renderDrawer()});
+  return;
+ }
+ let e=Object.entries(cart);drawerItems.innerHTML=e.length?e.map(([id,q])=>{let p=PRODUCTS.find(x=>x.id==id),imgs=p.images&&p.images.length?p.images:[p.img].filter(Boolean),src=imgs[0]||"";return '<div class="row">'+(src?'<img class="rthumb" src="'+src+'" alt="'+p.name+'" onerror="this.style.display=\'none\'">':'<div class="rthumb" style="display:flex;align-items:center;justify-content:center;font-size:25px">'+(p.emoji||"🛍️")+'</div>')+'<div class="rinfo"><div class="rname">'+p.name+'</div><div class="rprice">'+loc(finalPrice(p))+'</div></div><div class="rctrl"><button data-id="'+id+'" data-act="minus">−</button><span class="qtynum">'+loc(q)+'</span><button data-id="'+id+'" data-act="plus">+</button><span class="remove" data-id="'+id+'">'+T[currentLang].remove+'</span></div></div>'}).join(""):'<div class="empty">'+T[currentLang].empty+'</div>';grandTotal.innerText=loc("BHD "+total().toFixed(3));drawerItems.querySelectorAll("button").forEach(b=>b.onclick=()=>changeQty(b.dataset.id,b.dataset.act));drawerItems.querySelectorAll(".remove").forEach(x=>x.onclick=()=>{delete cart[x.dataset.id];renderDrawer();renderGrid();updateCart()})}
+let uiState="none";function openDrawer(mode="cart",push=true){drawerMode=mode;if(uiState==="viewer")closeImage(true);renderDrawer();drawerTitle.innerText=mode==="wishlist"?T[currentLang].wishlistTitle:T[currentLang].drawer;drawerFooter.style.display=mode==="wishlist"?"none":"block";overlay.classList.add("show");drawer.classList.add("show");if(push&&uiState!=="cart"){history.pushState({memzar:"cart"},"","#cart")}uiState="cart"}function closeDrawer(fromPop=false){overlay.classList.remove("show");drawer.classList.remove("show");if(!fromPop&&history.state&&history.state.memzar==="cart")history.back();uiState="none"}
 
 const viewer=document.getElementById("viewer"),vi=document.getElementById("viewerImg"),viewerProduct=document.getElementById("viewerProduct"),viewerAdd=document.getElementById("viewerAdd"),viewerCart=document.getElementById("viewerCart"),viewerOrder=document.getElementById("viewerOrder"),viewerBack=document.getElementById("viewerBack"),drawerBack=document.getElementById("drawerBack"),closeDrawerBtn=document.getElementById("closeDrawer");
 let gallery=[],gi=0,currentProduct=null,sc=1,tx=0,ty=0,pts=new Map(),sd=0,ss=1,lx=0,ly=0,lastTap=0;
@@ -266,7 +297,7 @@ viewerBack.onclick=e=>{e.preventDefault();e.stopPropagation();closeImage()};
 drawerBack.onclick=e=>{e.preventDefault();e.stopPropagation();closeDrawer()};
 closeDrawerBtn.onclick=e=>{e.preventDefault();e.stopPropagation();closeDrawer()};
 viewerAdd.onclick=e=>{e.preventDefault();e.stopPropagation();if(currentProduct){cart[currentProduct.id]=(cart[currentProduct.id]||0)+1;renderGrid();renderDrawer();updateCart();viewerAdd.innerText="✓ Added to cart";setTimeout(()=>viewerAdd.innerText="Add to cart",1200)}};
-viewerCart.onclick=e=>{e.preventDefault();e.stopPropagation();openDrawer()};
+viewerCart.onclick=e=>{e.preventDefault();e.stopPropagation();openDrawer("cart")};
 viewerOrder.onclick=e=>{e.preventDefault();e.stopPropagation();if(currentProduct){cart[currentProduct.id]=(cart[currentProduct.id]||0)+1;renderGrid();renderDrawer();updateCart();let imageUrl=absoluteImageUrl(gallery[gi]);let msg=encodeURIComponent("Hi Al Memzar Star Jewellery, I want to order:\nProduct: "+currentProduct.name+"\nPrice: "+currentProduct.price+"\nPhoto: "+imageUrl);window.location.href=buildWhatsAppLink(msg)}};
 vi.onclick=e=>e.stopPropagation();
 function dist(a,b){return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
@@ -281,14 +312,19 @@ viewer.addEventListener("click",e=>{if(e.target===viewer)closeImage()});
 document.addEventListener("keydown",e=>{if(!viewer.classList.contains("show"))return;if(e.key==="ArrowRight")nextPhoto();else if(e.key==="ArrowLeft")prevPhoto();else if(e.key==="Escape")closeImage()});
 
 langFab.onclick=()=>{currentLang=currentLang==="en"?"ar":"en";applyLang()};
-cartFab.onclick=openDrawer;count.onclick=openDrawer;overlay.onclick=closeDrawer;
+cartFab.onclick=()=>openDrawer("cart");count.onclick=()=>openDrawer("cart");overlay.onclick=closeDrawer;
+navHome.onclick=()=>{window.scrollTo({top:0,behavior:"smooth"})};
+navCategories.onclick=()=>{tabs.scrollIntoView({behavior:"smooth",block:"start"})};
+navCart.onclick=()=>openDrawer("cart");
+navWishlist.onclick=()=>openDrawer("wishlist");
+navAccount.onclick=()=>{chatPanel.classList.add("show");chatBadge.style.display="none";chatInput.focus()};
 currencyFab.onclick=e=>{e.stopPropagation();currencyMenu.classList.toggle("show")};document.addEventListener("click",()=>currencyMenu.classList.remove("show"));
 chatFab.onclick=()=>{chatPanel.classList.toggle("show");chatBadge.style.display="none";if(chatPanel.classList.contains("show"))chatInput.focus()};
 chatClose.onclick=()=>chatPanel.classList.remove("show");
 function sendChat(){let v=chatInput.value.trim();if(!v)return;let msg=encodeURIComponent("Hi Al Memzar Star Jewellery, I have a question:\n"+v);window.open(buildWhatsAppLink(msg),"_blank");chatInput.value=""}
 chatSend.onclick=sendChat;
 chatInput.addEventListener("keydown",e=>{if(e.key==="Enter")sendChat()});
-function applyLang(){let t=T[currentLang];document.body.dir=currentLang==="ar"?"rtl":"ltr";subtitleText.innerHTML=t.subtitle;taglineText.innerText=t.tagline;promoText.innerHTML=t.promo;policyText.innerHTML=t.policy;drawerTitle.innerText=t.drawer;totalLabel.innerText=t.total;waLinkText.innerText=t.order;langFab.innerText=t.lang;drawerBack.innerText=t.back;viewerBack.innerText=t.back;chatHeadTitle.innerText=t.chatTitle;chatWelcomeMsg.innerText=t.chatWelcome;chatInput.placeholder=t.chatPlaceholder;renderTabs();renderGrid();renderDrawer();updateCart()}
+function applyLang(){let t=T[currentLang];document.body.dir=currentLang==="ar"?"rtl":"ltr";subtitleText.innerHTML=t.subtitle;taglineText.innerText=t.tagline;promoText.innerHTML=t.promo;policyText.innerHTML=t.policy;drawerTitle.innerText=drawerMode==="wishlist"?t.wishlistTitle:t.drawer;totalLabel.innerText=t.total;waLinkText.innerText=t.order;langFab.innerText=t.lang;drawerBack.innerText=t.back;viewerBack.innerText=t.back;chatHeadTitle.innerText=t.chatTitle;chatWelcomeMsg.innerText=t.chatWelcome;chatInput.placeholder=t.chatPlaceholder;navHomeText.innerText=t.home;navCategoriesText.innerText=t.categories;navCartText.innerText=t.cart;navWishText.innerText=t.wishlistNav;navAccountText.innerText=t.account;renderTabs();renderGrid();renderDrawer();updateCart()}
 window.addEventListener("popstate",()=>{if(uiState==="viewer")closeImage(true);else if(uiState==="cart")closeDrawer(true);});
 async function loadExternalProducts(){
  try{
