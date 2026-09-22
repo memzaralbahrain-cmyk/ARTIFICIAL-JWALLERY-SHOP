@@ -19,8 +19,8 @@ header p{font:12px Arial;color:#8a7570;margin-top:4px}.tagline{font:italic 13px 
 .thumb{aspect-ratio:1;background:linear-gradient(135deg,#f8e4de,#fdf3f0);display:flex;align-items:center;justify-content:center;font-size:34px;overflow:hidden;cursor:zoom-in;position:relative}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}.missing{font:12px Arial;color:#8a7570}
 .photo-count{position:absolute;right:7px;bottom:7px;background:#0009;color:#fff;padding:4px 7px;border-radius:12px;font:11px Arial}
-.heart-btn{position:absolute;left:7px;top:7px;width:28px;height:28px;border-radius:50%;background:#fffc;border:0;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;cursor:pointer}
-body[dir=rtl] .heart-btn{left:auto;right:7px}
+.heart-btn{width:26px;height:26px;border-radius:50%;background:#f8e4de;border:0;font-size:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.price-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .info{padding:10px 12px 14px}.name{font-size:14px}.desc{font:11px Arial;color:#7a6a66;margin-top:2px}.price{font:13px Arial;color:var(--gold);margin-top:4px}
 .strike{color:#7a6a66;text-decoration:line-through;font-size:11px;margin-right:6px}.fx,.review-line{font:11px Arial;color:#8a7570;margin-top:3px}.review-line{cursor:pointer}.stars{color:#d4a017;letter-spacing:1px}
 .badge{display:inline-block;background:#c0392b;color:#fff;font:10px Arial;font-weight:bold;padding:2px 6px;border-radius:4px;margin-bottom:4px}.card button{margin-top:8px;width:100%;background:none;border:1px solid var(--gold);color:var(--gold2);padding:6px;border-radius:6px;font:12px Arial}
@@ -247,11 +247,11 @@ function renderGrid(){
   let n=currentLang==="ar"&&p.nameAr?p.nameAr:p.name;
   let gallery=p.images&&p.images.length?p.images:[p.img].filter(Boolean);
   let photoCount=p.images?p.images.length:0;
-  return '<div class="card"><div class="thumb" data-id="'+p.id+'"><button class="heart-btn" data-wish="'+p.id+'" aria-label="wishlist">'+(isWished(p.id)?"❤️":"🤍")+'</button>'+
+  return '<div class="card"><div class="thumb" data-id="'+p.id+'">'+
    (gallery.length?'<img src="'+gallery[0]+'" alt="'+n+'" loading="lazy">'+
    (photoCount?'<span class="photo-count">📷 '+photoCount+'</span>':''):p.emoji)+
    '</div><div class="info">'+(p.discount?'<span class="badge">'+loc(p.discount)+'% OFF</span><br>':'')+
-   '<div class="name">'+n+'</div><div class="price">'+priceHTML(p)+'</div>'+
+   '<div class="name">'+n+'</div><div class="price-row"><div class="price">'+priceHTML(p)+'</div><button class="heart-btn" data-wish="'+p.id+'" aria-label="wishlist">'+(isWished(p.id)?"❤️":"🤍")+'</button></div>'+
    (cart[p.id]?'<div class="qtybox"><button data-id="'+p.id+'" data-act="minus">−</button><span class="qtynum">'+loc(cart[p.id])+'</span><button data-id="'+p.id+'" data-act="plus">+</button></div>':'<button data-id="'+p.id+'" data-act="plus">'+T[currentLang].add+'</button>')+
    '</div></div>'
  }).join("");
