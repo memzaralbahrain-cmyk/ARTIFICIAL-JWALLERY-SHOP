@@ -87,6 +87,9 @@ body{padding-bottom:calc(150px + env(safe-area-inset-bottom,0px));-webkit-tap-hi
 #viewerClose,.viewer-back,.viewer-share{top:calc(14px + env(safe-area-inset-top,0px))}
 .viewer-share{position:absolute;right:66px;width:44px;height:44px;border:1px solid #fff8;border-radius:50%;background:#0008;color:#fff;font-size:20px;z-index:30;touch-action:manipulation}
 body[dir=rtl] .viewer-share{right:auto;left:66px}
+/* ===== fix: heart button was stretched by ".card button" rule ===== */
+.card .heart-btn{width:28px;height:28px;margin:0;padding:0;border:0;flex:0 0 28px;background:#f8e4de;border-radius:50%}
+.price-row .price{min-width:0}
 /* ===== offline bar ===== */
 #offlineBar{display:none;position:fixed;top:0;left:0;right:0;background:#3d2b2e;color:#fff;font:12px Arial;text-align:center;padding:calc(6px + env(safe-area-inset-top,0px)) 8px 6px;z-index:150}
 /* ===== account panel ===== */
