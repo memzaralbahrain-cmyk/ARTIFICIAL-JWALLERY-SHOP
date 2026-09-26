@@ -33,11 +33,11 @@
 
 
 [Bangles|أساور]
- ZarkonBange1@7.jpg
- ZarkonBange2@7.jpg
-ZarkonBange3@7.jpg
-ZarkonBange4@7.jpg
-ZarkonBange5@7.jpg
+ ZarkonBangel1@7.jpg
+ ZarkonBangel2@7.jpg
+ ZarkonBangel3@7.jpg
+ ZarkonBangel4@7.jpg
+ ZarkonBangel5@7.jpg
 
 [Anklets|خلاخيل]
  Anklet2@3.jpg
