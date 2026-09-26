@@ -24,8 +24,11 @@
 # ============================================================
 
 [Rings|خواتم]
-# GoldRing1@30.jpg
-# GoldRing2@25.jpg
+ Gold zarkonRing1@3.jpg
+ Gold zarkonRing2@3.jpg
+ Gold zarkonRing3@3.jpg
+ Gold zarkonRing4@3.jpg
+
 
 [Bangles|أساور]
 # ZarkonBangel1@20.jpg
