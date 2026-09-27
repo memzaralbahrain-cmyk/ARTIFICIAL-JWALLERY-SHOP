@@ -51,6 +51,7 @@ body.theme-emerald{--bg:#f0faf5;--card:#fff;--gold:#2f9e6e;--gold2:#1f7350;--cre
 body.theme-dark{--bg:#1a1a1a;--card:#242424;--gold:#d4af6a;--gold2:#e8c785;--cream:#f0e6d8;--line:#3a3a3a}
 .theme-swatch{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer}.theme-swatch .sw-dot{width:28px;height:28px;border-radius:50%;flex-shrink:0;border:2px solid #0002}.theme-swatch.on{background:var(--bg);font-weight:bold}.mi-theme .mi-icon{background:#fff3cd}
 .announce-bar{display:none;align-items:center;justify-content:space-between;gap:10px;background:#c0392b;color:#fff;font:12.5px Arial;padding:10px 14px;position:sticky;top:0;z-index:60}.announce-bar b{cursor:pointer;font-size:16px;flex-shrink:0}
+.sub-form{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}.sub-form input{border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:13px Arial;background:var(--card);color:var(--cream)}
 .overlay{display:none;position:fixed;inset:0;background:#0009;z-index:50}.overlay.show{display:block}.drawer{position:fixed;left:0;right:0;bottom:0;max-height:70vh;background:var(--card);border-top:1px solid var(--gold);border-radius:16px 16px 0 0;z-index:51;display:flex;flex-direction:column;transform:translateY(100%);transition:.25s}.drawer.show{transform:translateY(0)}
 .drawer-head{padding:12px 16px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-family:Arial}.drawer-head h3{color:var(--gold2);font:18px Georgia}.drawer-back{border:1px solid var(--gold);background:none;color:var(--gold2);border-radius:8px;padding:7px 10px;font:bold 12px Arial;touch-action:manipulation}.drawer-head-right{display:flex;align-items:center;gap:12px}.close{font-size:28px;line-height:1;cursor:pointer}.drawer-items{overflow:auto;padding:10px 16px;flex:1}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-family:Arial}.rthumb{width:58px;height:58px;flex:0 0 58px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:#f8e4de}.rinfo{min-width:0;flex:1}.rname{font-size:13px}.rprice{font-size:12px;color:var(--gold)}.rctrl{display:flex;align-items:center;gap:8px}.rctrl button{width:26px;height:26px;border:1px solid var(--gold);background:none;color:var(--gold2);border-radius:6px}.remove{color:#c0392b;font-size:11px;text-decoration:underline;margin-left:8px}.empty{text-align:center;color:#8a7570;font:13px Arial;padding:30px}.drawer-footer{padding:12px 16px 16px;border-top:1px solid var(--line);font-family:Arial}.grand-total{display:flex;justify-content:space-between;font-size:15px;color:var(--gold2);font-weight:bold}
 .toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);background:#1f3d20;border:1px solid #6fbf73;color:#c8f0ca;font:12.5px Arial;padding:10px 18px;border-radius:999px;z-index:80;opacity:0;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -288,7 +289,12 @@ function fromNamed({idStart,cat,catAr,emoji="💎",files}){
    ke "Buy 1 Get 1" button se sirf wahi products dikhenge jinme bogo:true ho,
    aur unke card par ek purple "BUY 1 GET 1" badge bhi dikhega. */
 const PRODUCTS=[
-
+{id:1,cat:"Payals",nameAr:"خلخال فضي فاخر",name:"Fancy Silver Payal",price:"BHD 6.500",discount:0,img:"",emoji:"🦶"},
+{id:2,cat:"Payals",nameAr:"خلخال راجكوت",name:"Rajkot Design Payal",price:"BHD 7.200",discount:20,img:"",emoji:"🦶"},
+{id:3,cat:"Chains",nameAr:"سلسلة فضية 925 - 20 بوصة",name:'925 Silver Chain 20"',price:"BHD 9.000",discount:0,img:"",emoji:"⛓️"},
+{id:4,cat:"Chains",nameAr:"سلسلة فضية 925 - 24 بوصة",name:'925 Silver Chain 24"',price:"BHD 11.500",discount:0,img:"",emoji:"⛓️"},
+{id:5,cat:"Rings",nameAr:"خاتم فضي قابل للتعديل",name:"Silver Adjustable Ring",price:"BHD 3.200",discount:0,img:"",emoji:"💍"},
+{id:6,cat:"Bangles",nameAr:"طقم أساور أنيق",name:"Fashion Bangle Set",price:"BHD 5.800",discount:0,img:"",emoji:"⭕"},
 {id:7,cat:"Necklace",nameAr:"طقم لؤلؤ",name:"Pearl Set",price:"BHD 10.000",discount:0,img:"PearlsetHindi.jpg",emoji:"📿",bogo:true},
 {id:8,cat:"Necklace",nameAr:"طقم لولو 1",name:"Lulu Set 1",price:"BHD 10.000",discount:0,img:"IMG-20260703-WA0029.jpg",emoji:"📿"},
 {id:9,cat:"Necklace",nameAr:"طقم لولو 2",name:"Lulu Set 2",price:"BHD 11.000",discount:0,img:"IMG-20260712-WA0060.jpg",emoji:"📿"},
@@ -374,7 +380,8 @@ en:{account:"My Account",orders:"Order history",noOrders:"No orders yet. Orders 
  priceDefault:"Default order",priceLowHigh:"Price: Low to High",priceHighLow:"Price: High to Low",
  filterTitle:"Filters",filterCategory:"Category",filterPriceSort:"Sort by price",filterMore:"More",
  offersOnly:"Offers only",bogoOnly:"Buy 1 Get 1 only",clearFilters:"Clear all filters",noResults:"No items match your filters",bogoBadge:"BUY 1 GET 1",
- menuTheme:"Theme",themeTitle:"Choose a Theme",theme_rose:"Classic Rose",theme_purple:"Royal Purple",theme_emerald:"Emerald Green",theme_dark:"Midnight Dark"},
+ menuTheme:"Theme",themeTitle:"Choose a Theme",theme_rose:"Classic Rose",theme_purple:"Royal Purple",theme_emerald:"Emerald Green",theme_dark:"Midnight Dark",
+ subscribeTitle:"🔔 Get Offers & Discounts",subscribedMsg:"Thanks! We'll message you with new offers on WhatsApp.",subName:"Your name (optional)",subPhone:"WhatsApp / phone number",subEmail:"Email (optional)",subSend:"Send my details",subNeedOne:"Please enter your phone or email"},
 ar:{account:"حسابي",orders:"سجل الطلبات",noOrders:"لا توجد طلبات بعد. الطلبات التي ترسلها عبر واتساب ستظهر هنا.",reorder:"اطلب مرة أخرى",
  notif:"🔔 تفعيل الإشعارات",notifOn:"🔔 الإشعارات مفعّلة ✓",notifDenied:"الإشعارات محظورة من إعدادات الهاتف",notifNo:"الإشعارات غير مدعومة على هذا الجهاز",notifWelcome:"ستصلك تحديثات عن المجموعات الجديدة والعروض.",
  share:"⤴ مشاركة التطبيق",shareText:"مجوهرات النجم المزمار - مجوهرات فضية وإكسسوارات من البحرين",copied:"تم نسخ الرابط",
@@ -384,7 +391,8 @@ ar:{account:"حسابي",orders:"سجل الطلبات",noOrders:"لا توجد 
  priceDefault:"الترتيب الافتراضي",priceLowHigh:"السعر: من الأقل للأعلى",priceHighLow:"السعر: من الأعلى للأقل",
  filterTitle:"التصفية",filterCategory:"الفئة",filterPriceSort:"الترتيب حسب السعر",filterMore:"المزيد",
  offersOnly:"العروض فقط",bogoOnly:"اشترِ 1 واحصل على 1 فقط",clearFilters:"مسح كل الفلاتر",noResults:"لا توجد عناصر مطابقة للفلاتر",bogoBadge:"اشترِ 1 واحصل على 1",
- menuTheme:"المظهر",themeTitle:"اختر مظهر الألوان",theme_rose:"وردي كلاسيكي",theme_purple:"بنفسجي ملكي",theme_emerald:"أخضر زمردي",theme_dark:"داكن ليلي"}
+ menuTheme:"المظهر",themeTitle:"اختر مظهر الألوان",theme_rose:"وردي كلاسيكي",theme_purple:"بنفسجي ملكي",theme_emerald:"أخضر زمردي",theme_dark:"داكن ليلي",
+ subscribeTitle:"🔔 احصل على العروض والخصومات",subscribedMsg:"شكرًا! سنرسل لك العروض الجديدة عبر واتساب.",subName:"اسمك (اختياري)",subPhone:"رقم الواتساب / الهاتف",subEmail:"البريد الإلكتروني (اختياري)",subSend:"إرسال بياناتي",subNeedOne:"الرجاء إدخال رقم الهاتف أو البريد الإلكتروني"}
 };
 function t2(k){return (T2[currentLang]&&T2[currentLang][k])||T2.en[k]||k}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
@@ -607,7 +615,18 @@ viewerShare.onclick=e=>{e.preventDefault();e.stopPropagation();if(currentProduct
 /* ---- account screen ---- */
 function renderAccount(){
  let orders=getOrders(),loc2=currentLang==="ar"?"ar-BH":"en-GB";
- let h='<div class="acc-sec">'+t2("orders")+'</div>';
+ let h='<div class="acc-sec">'+t2("subscribeTitle")+'</div>';
+ if(localStorage.getItem("memzar_subscribed")==="1"){
+  h+='<div class="empty">'+t2("subscribedMsg")+'</div>';
+ }else{
+  h+='<div class="sub-form">'+
+   '<input type="text" id="subName" placeholder="'+t2("subName")+'">'+
+   '<input type="tel" id="subPhone" placeholder="'+t2("subPhone")+'">'+
+   '<input type="email" id="subEmail" placeholder="'+t2("subEmail")+'">'+
+   '<button class="acc-btn" id="subSend" type="button" style="text-align:center;background:var(--gold);color:#fff;border-color:var(--gold)">'+t2("subSend")+'</button>'+
+   '</div>';
+ }
+ h+='<div class="acc-sec">'+t2("orders")+'</div>';
  h+=orders.length?orders.map((o,i)=>'<div class="ord"><div class="ord-top"><b>'+new Date(o.t).toLocaleDateString(loc2)+'</b><span>'+loc("BHD "+o.total.toFixed(3))+'</span></div><div class="ord-items">'+o.items.map(x=>loc(x.q)+" × "+esc(x.name)).join("<br>")+'</div><button class="acc-btn" data-reorder="'+i+'" type="button">'+t2("reorder")+'</button></div>').join(""):'<div class="empty">'+t2("noOrders")+'</div>';
  h+='<div class="acc-sec">'+t2("settings")+'</div>';
  h+='<button class="acc-btn'+(notifOn()?' on':'')+'" id="accNotif" type="button">'+(notifOn()?t2("notifOn"):t2("notif"))+'</button>';
@@ -620,6 +639,16 @@ function renderAccount(){
  let n=document.getElementById("accNotif");if(n)n.onclick=enableNotifications;
  let s=document.getElementById("accShare");if(s)s.onclick=shareApp;
  let c=document.getElementById("accClear");if(c)c.onclick=()=>{localStorage.removeItem("memzar_orders");renderAccount();tip(t2("cleared"))};
+ let sb=document.getElementById("subSend");
+ if(sb)sb.onclick=()=>{
+  let name=(document.getElementById("subName").value||"").trim();
+  let phone=(document.getElementById("subPhone").value||"").trim();
+  let email=(document.getElementById("subEmail").value||"").trim();
+  if(!phone&&!email){tip(t2("subNeedOne"));return}
+  let msg=encodeURIComponent("🔔 New Offers Subscriber\nName: "+(name||"-")+"\nPhone: "+(phone||"-")+"\nEmail: "+(email||"-"));
+  localStorage.setItem("memzar_subscribed","1");
+  window.location.href=buildWhatsAppLink(msg);
+ };
 }
 navAccount.onclick=()=>openDrawer("account");
 
