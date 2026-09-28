@@ -91,8 +91,8 @@
  Bangle6@4.jpg
  Bangle7@4.jpg
  Bangle8@4.jpg
- Bangle9@4.jpg
- Bangle10@4.jpg
+ #Bangle9@4.jpg
+ #Bangle10@4.jpg
 
 
 
