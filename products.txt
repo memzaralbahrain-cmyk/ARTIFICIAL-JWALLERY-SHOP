@@ -94,7 +94,7 @@
  #Bangle9@4.jpg
  #Bangle10@4.jpg
 
- [Earrings]
+ [Earrings|تراجي]
  Earrings1@.500.jpg
  Earrings2@.500.jpg
  Earrings3@.500.jpg
