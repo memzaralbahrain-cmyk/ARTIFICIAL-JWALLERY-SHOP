@@ -82,6 +82,20 @@
  B0018Maznat@5.jpg
  B0018Maznat1@5.jpg
 
+ [Bangle|أسيورة]
+ Bangle1@4.jpg
+ Bangle2@4.jpg
+ Bangle3@4.jpg
+ Bangle4@4.jpg
+ Bangle5@4.jpg
+ Bangle6@4.jpg
+ Bangle7@4.jpg
+ Bangle8@4.jpg
+ Bangle9@4.jpg
+ Bangle10@4.jpg
+
+
+
 
 
 
