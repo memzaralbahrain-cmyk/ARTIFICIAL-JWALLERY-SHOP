@@ -95,14 +95,14 @@
  #Bangle10@4.jpg
 
  [Earrings|تراجي]
- Earrings1@.500.jpg
- Earrings2@.500.jpg
- Earrings3@.500.jpg
- Earrings4@.500.jpg
- Earrings5@.500.jpg
- Earrings6@.500.jpg
+  Earrings1@.500.jpg
+  Earrings2@.500.jpg
+  Earrings3@.500.jpg
+  Earrings4@.500.jpg
+  Earrings5@.500.jpg
+  Earrings6@.500.jpg
 
-
+ 
 
 
 
