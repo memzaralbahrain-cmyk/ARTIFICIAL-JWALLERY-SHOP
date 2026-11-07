@@ -116,7 +116,17 @@
  Kurci Jabar1@20.jpg
  Kurci Jabar2@20.jpg
  Kurci Jabar3@10.jpg
- Kurci Jabar4@15.jpg
+ #Kurci Jabar4@15.jpg
+
+ [Earrings|تراجي]
+  12021@1.jpg
+  12022@1.jpg
+  12023@1.jpg
+  12024@1.jpg
+  12025@1.jpg
+  12026@1.jpg
+
+
 
  
 
